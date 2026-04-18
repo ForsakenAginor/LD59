@@ -61,7 +61,6 @@ public class TableVisual : MonoBehaviour
         
         yield return new WaitForSeconds(0.5f);
         yield return _tableAnimation.Animate(_cards);
-        yield return new WaitForSeconds(2f);
         _cardTransferManager.CommitTable();
     }
 }

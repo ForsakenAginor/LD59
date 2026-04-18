@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Zenject;
 
 public class CombinationCalculator
 {
@@ -13,12 +14,19 @@ public class CombinationCalculator
         Frequency._2000Hz
     };
     
-    // Рояль-стрит: 200,300,400,500,600
     private static readonly List<Frequency> RoyalFrequencies = new List<Frequency>
     {
-        Frequency._200Hz, Frequency._300Hz, Frequency._400Hz,
-        Frequency._500Hz, Frequency._600Hz
+        Frequency._900Hz, Frequency._1000Hz, Frequency._1200Hz,
+        Frequency._1500Hz, Frequency._2000Hz
     };
+
+    private readonly ICombinationsConfiguration _configuration;
+
+    [Inject]
+    public CombinationCalculator(ICombinationsConfiguration config)
+    {
+        _configuration = config;
+    }
     
     /// <summary>
     /// Рассчитывает лучшую комбинацию из выложенных на стол карт
@@ -31,7 +39,7 @@ public class CombinationCalculator
         var allCombinations = new List<CombinationResult>();
         
         // Генерируем все возможные подмножества от 3 до 5 карт (плюс одиночная на всякий)
-        for (int size = 2; size <= Math.Min(5, cards.Count); size++)
+        for (int size = 1; size <= Math.Min(5, cards.Count); size++)
         {
             var subsets = GetCombinations(cards, size);
             foreach (var subset in subsets)
@@ -41,57 +49,61 @@ public class CombinationCalculator
                     allCombinations.Add(combo);
             }
         }
-        
+        /*
         // Если нет ни одной комбинации из 3+ карт — берём самую "высокую" одиночную карту
         if (allCombinations.Count == 0 && cards.Count >= 1)
         {
             var singleCombo = EvaluateSingle(cards);
             allCombinations.Add(singleCombo);
-        }
+        }*/
         
         // Возвращаем комбинацию с наибольшим множителем
-        return allCombinations.OrderByDescending(c => c.Multiplier).FirstOrDefault();
+        return allCombinations.OrderByDescending(c => c.Multiplier).ThenByDescending(c => GetCombinationValue(c.UsedCards)).FirstOrDefault();
+    }
+    
+    private int GetCombinationValue(List<Card> cards)
+    {
+        // Сумма индексов частот (чем выше — тем лучше)
+        return cards.Sum(c => FrequencyOrder.IndexOf(c.Frequency));
     }
     
     private CombinationResult EvaluateCombination(List<Card> cards)
     {
-        // Проверяем комбинации от самой ценной к менее ценной
         if (IsRoyalStraightFlush(cards))
-            return new CombinationResult(CombinationType.RoyalStraightFlush, 15f, cards);
-        
-        if (IsFourOfAKind(cards, out var fourCards))
-            return new CombinationResult(CombinationType.FourOfAKind, 7f, fourCards);
-        
-        if (IsFullHouse(cards, out var fullHouseCards))
-            return new CombinationResult(CombinationType.FullHouse, 6f, fullHouseCards);
+            return new CombinationResult(CombinationType.RoyalStraightFlush, _configuration.GetValue(CombinationType.RoyalStraightFlush).Multiplier, cards);
         
         if (IsStraightFlush(cards))
-            return new CombinationResult(CombinationType.StraightFlush, 8f, cards);
-        
-        if (IsFullFlush(cards))
-            return new CombinationResult(CombinationType.FullFlush, 6f, cards);
-        
-        if (IsBigFlush(cards))
-            return new CombinationResult(CombinationType.BigFlush, 4.5f, cards);
-        
-        if (IsSet(cards, out var setCards))
-            return new CombinationResult(CombinationType.Set, 4f, setCards);
+            return new CombinationResult(CombinationType.StraightFlush, _configuration.GetValue(CombinationType.StraightFlush).Multiplier, cards);
         
         if (IsStraight(cards))
-            return new CombinationResult(CombinationType.Straight, 3.5f, cards);
+            return new CombinationResult(CombinationType.Straight, _configuration.GetValue(CombinationType.Straight).Multiplier, cards);
+        
+        if (IsFourOfAKind(cards, out var fourCards))
+            return new CombinationResult(CombinationType.FourOfAKind, _configuration.GetValue(CombinationType.FourOfAKind).Multiplier, fourCards);
+        
+        if (IsFullHouse(cards, out var fullHouseCards))
+            return new CombinationResult(CombinationType.FullHouse, _configuration.GetValue(CombinationType.FullHouse).Multiplier, fullHouseCards);
+        
+        if (IsFullFlush(cards))
+            return new CombinationResult(CombinationType.FullFlush, _configuration.GetValue(CombinationType.FullFlush).Multiplier, cards);
+        
+        if (IsBigFlush(cards))
+            return new CombinationResult(CombinationType.BigFlush, _configuration.GetValue(CombinationType.BigFlush).Multiplier, cards);
+        
+        if (IsSet(cards, out var setCards))
+            return new CombinationResult(CombinationType.Set, _configuration.GetValue(CombinationType.Set).Multiplier, setCards);
         
         if (IsSmallFlush(cards))
-            return new CombinationResult(CombinationType.SmallFlush, 3f, cards);
-        
+            return new CombinationResult(CombinationType.SmallFlush, _configuration.GetValue(CombinationType.SmallFlush).Multiplier, cards);
         
         if (IsTwoPairs(cards, out var twoPairsCards))
-            return new CombinationResult(CombinationType.TwoPairs, 2.5f, twoPairsCards);
+            return new CombinationResult(CombinationType.TwoPairs, _configuration.GetValue(CombinationType.TwoPairs).Multiplier, twoPairsCards);
         
         if (IsPair(cards, out var pairCards))
-            return new CombinationResult(CombinationType.Pair, 2f, pairCards);
+            return new CombinationResult(CombinationType.Pair, _configuration.GetValue(CombinationType.Pair).Multiplier, pairCards);
         
         GetHighestCard(cards, out var highestCard);
-        return new CombinationResult(CombinationType.Single, 1f, highestCard);
+        return new CombinationResult(CombinationType.Single, _configuration.GetValue(CombinationType.Single).Multiplier, highestCard);
     }
 
     private void GetHighestCard(List<Card> cards, out List<Card> highestCards)
@@ -174,7 +186,7 @@ public class CombinationCalculator
     
     private bool IsStraight(List<Card> cards)
     {
-        if (cards.Count < 3) return false;
+        if (cards.Count < 5) return false;
         
         var indices = cards.Select(c => FrequencyOrder.IndexOf(c.Frequency)).OrderBy(i => i).ToList();
         

@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -25,4 +26,5 @@ public class ResourceVisual : MonoBehaviour
         _rerolls.text = _gameManager.RerollsLeft.ToString();
         _signals.text = _gameManager.SignalsLeft.ToString();
     }
+
 }
