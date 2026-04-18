@@ -20,5 +20,7 @@ namespace Assets.Source.Scripts.DI.Services.Boot
         {
             return _combinationsConfiguration.GetValue(combination);
         }
+        
+        public Sprite GetIcon(Frequency frequency, Suit suit) => _cardValueConfiguration.GetIcon(frequency, suit);
     }
 }

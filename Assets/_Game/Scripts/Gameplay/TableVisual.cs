@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Source.Scripts.DI.Services.Global;
 using UnityEngine;
 using Zenject;
 
@@ -13,16 +14,18 @@ public class TableVisual : MonoBehaviour
     [SerializeField] private Transform _cardsContainer;
     [SerializeField] private TableAnimation _tableAnimation;
 
+    private IZenjectInstantiateWrapper _instantiateWrapper;
     private CardTransferManager _cardTransferManager;
     private ScoreManager _scoreManager;
     private Table _table;
 
     [Inject]
-    public void Construct(ScoreManager scoreManager, CardTransferManager transferManager)
+    public void Construct(ScoreManager scoreManager, CardTransferManager transferManager, IZenjectInstantiateWrapper instantiateWrapper)
     {
         _scoreManager = scoreManager;
         _cardTransferManager = transferManager;
         _table = _cardTransferManager.Table;
+        _instantiateWrapper = instantiateWrapper;
 
         _table.TableRefreshed += OnTableRefreshed;
         _table.TableCleared += OnTableCleared;
@@ -48,7 +51,7 @@ public class TableVisual : MonoBehaviour
 
         foreach (Card card in collection)
         {
-            var cardVisual = Instantiate(_cardVisualPrefab, _cardsContainer);
+            var cardVisual = _instantiateWrapper.Instantiate(_cardVisualPrefab, _cardsContainer);
             cardVisual.Init(card);
             _cards.Add(cardVisual);
         }

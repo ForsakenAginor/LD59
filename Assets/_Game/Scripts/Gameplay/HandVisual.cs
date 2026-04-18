@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Source.Scripts.DI.Services.Global;
 using UnityEngine;
 using Zenject;
 
@@ -13,12 +14,14 @@ public class HandVisual : MonoBehaviour
 
     [SerializeField] private CardVisual _cardVisualPrefab;
     [SerializeField] private Transform _cardsInHandContainer;
-
+    [SerializeField] private SimpleOverlapHand _layout;
+    
     private ScoreManager _scoreManager;
     private CardTransferManager _cardTransferManager;
     private Hand _hand;
     private bool _isBlocked;
     private CombinationResult _combination;
+    private IZenjectInstantiateWrapper _instantiateWrapper;
 
     public event Action<PreviewData> SelectedCardsChanged;
 
@@ -27,10 +30,11 @@ public class HandVisual : MonoBehaviour
     public CombinationResult Combination => _combination;
     
     [Inject]
-    public void Construct(ScoreManager scoreManager, CardTransferManager transferManager)
+    public void Construct(ScoreManager scoreManager, CardTransferManager transferManager, IZenjectInstantiateWrapper instantiateWrapper)
     {
         _scoreManager = scoreManager;
         _cardTransferManager = transferManager;
+        _instantiateWrapper = instantiateWrapper;
         _hand = _cardTransferManager.Hand;
 
         _hand.CardAdded += OnCardAdded;
@@ -62,11 +66,12 @@ public class HandVisual : MonoBehaviour
 
     private void OnCardAdded(Card card)
     {
-        var cardVisual = Instantiate(_cardVisualPrefab, _cardsInHandContainer);
+        var cardVisual = _instantiateWrapper.Instantiate(_cardVisualPrefab, _cardsInHandContainer);
         cardVisual.Init(card);
         _cards.Add(card, cardVisual);
         cardVisual.OnClick += OnCardClick;
         _isBlocked = false;
+        _layout.SetNeedUpdate();
     }
 
     private void OnCardRemoved(Card card)
@@ -77,6 +82,7 @@ public class HandVisual : MonoBehaviour
         _cards[card].OnClick -= OnCardClick;
         Destroy(_cards[card].gameObject);
         _cards.Remove(card);
+        //_layout.SetNeedUpdate();
     }
 
     private void OnCardClick(CardVisual cardVisual)
