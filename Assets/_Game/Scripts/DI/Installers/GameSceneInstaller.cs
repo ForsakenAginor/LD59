@@ -33,6 +33,15 @@ namespace Assets.Source.Scripts.DI.Installers
             BindNoiceVignetteEffect();
         }
 
+        private void BindModelScripts()
+        {
+            ScoreManager scoreManager = new ScoreManager();
+            CardTransferManager cardTransferManager = new CardTransferManager();
+
+            Container.Bind<ScoreManager>().To<ScoreManager>().FromInstance(scoreManager).AsSingle().NonLazy();
+            Container.Bind<CardTransferManager>().To<CardTransferManager>().FromInstance(cardTransferManager).AsSingle().NonLazy();
+        }
+
         private void BindNoiceVignetteEffect()
         {
             NoiceVignetteEffect effect = new NoiceVignetteEffect(_noiceVignetteEffect, _noiceVignetteMaterial);

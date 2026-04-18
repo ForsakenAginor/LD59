@@ -1,26 +1,32 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 public class Hand
 {
-    private List<Card> _cards;
-    public IReadOnlyList<Card> Cards => _cards;
-    public int Count => _cards.Count;
-    public int MaxSize { get; }
+    private readonly List<Card> _cards;
     
-    public Hand(int maxSize = 5)
+    public Hand(int maxSize = 8)
     {
         MaxSize = maxSize;
         _cards = new List<Card>();
     }
     
-    public bool AddCard(Card card)
+    public event Action<Card> CardAdded;
+    public event Action<Card> CardRemoved;
+    
+    public IReadOnlyList<Card> Cards => _cards;
+    
+    public int Count => _cards.Count;
+    
+    public int MaxSize { get; private set; }
+
+    public void SetNewMaxSize(int newMaxSize)
     {
-        if (_cards.Count >= MaxSize)
-            return false;
-            
-        _cards.Add(card);
-        return true;
+        if(newMaxSize <= 0)
+            throw new ArgumentException("Max size must be greater than 0", nameof(newMaxSize));
+        
+        MaxSize = newMaxSize;
     }
     
     public void AddCards(IEnumerable<Card> cards)
@@ -29,7 +35,9 @@ public class Hand
         {
             if (_cards.Count >= MaxSize)
                 break;
+            
             _cards.Add(card);
+            CardAdded?.Invoke(card);
         }
     }
     
@@ -40,7 +48,19 @@ public class Hand
             
         Card card = _cards[index];
         _cards.RemoveAt(index);
+        CardRemoved?.Invoke(card);
         return card;
+    }
+    
+    public bool RemoveCard(Card card)
+    {
+        int index = _cards.FindIndex(c => c.Equals(card));
+        if (index == -1)
+            return false;
+            
+        _cards.RemoveAt(index);
+        CardRemoved?.Invoke(card);
+        return true;
     }
     
     public List<Card> RemoveCards(List<int> indices)
@@ -52,6 +72,7 @@ public class Hand
             if (index >= 0 && index < _cards.Count)
             {
                 removed.Add(_cards[index]);
+                CardRemoved?.Invoke(_cards[index]);
                 _cards.RemoveAt(index);
             }
         }
@@ -59,15 +80,21 @@ public class Hand
         return removed;
     }
     
-    public void Clear()
+    public List<Card> RemoveCards(IEnumerable<Card> cardsToRemove)
     {
-        _cards.Clear();
-    }
-    
-    public Card GetCard(int index)
-    {
-        if (index < 0 || index >= _cards.Count)
-            return null;
-        return _cards[index];
+        List<Card> removed = new List<Card>();
+        
+        foreach (var cardToRemove in cardsToRemove)
+        {
+            int index = _cards.FindIndex(c => c.Equals(cardToRemove));
+            if (index != -1)
+            {
+                removed.Add(_cards[index]);
+                CardRemoved?.Invoke(_cards[index]);
+                _cards.RemoveAt(index);
+            }
+        }
+        
+        return removed;
     }
 }

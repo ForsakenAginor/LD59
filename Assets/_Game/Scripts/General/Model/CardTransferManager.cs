@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.XR;
 
 public class CardTransferManager
 {
@@ -19,43 +19,23 @@ public class CardTransferManager
     public Hand Hand => _hand;
     public Table Table => _table;
     
-    // Начальная раздача
-    public void DealInitialHand()
+    public void DrawCards(int amount)
     {
-        _hand.Clear();
-        var cards = _deck.Draw(5);
+        //_hand.Clear();
+        if(amount <= 0 || amount > _hand.Count)
+            throw new Exception("Not enough cards");
+        
+        var cards = _deck.Draw(amount);
         _hand.AddCards(cards);
     }
     
-    // Переложить карту из руки на стол по индексу
-    public bool MoveToTable(int handIndex)
+    public void MoveToTable(IEnumerable<Card> cards)
     {
-        Card card = _hand.RemoveCard(handIndex);
-        if (card != null)
-        {
-            _table.AddCard(card);
-            return true;
-        }
-        return false;
-    }
-    
-    // Переложить несколько карт из руки на стол
-    public int MoveToTable(List<int> handIndices)
-    {
-        List<Card> movedCards = _hand.RemoveCards(handIndices);
-        if (movedCards.Count > 0)
-        {
-            _table.AddCards(movedCards);
-        }
-        return movedCards.Count;
-    }
-    
-    // Вернуть все карты со стола в руку
-    public void ReturnAllToHand()
-    {
-        var tableCards = _table.GetCardsCopy();
-        _table.Clear();
-        _hand.AddCards(tableCards);
+        if(cards == null || cards.Count() == 0)
+            throw new Exception("Empty cards");
+        
+        _hand.RemoveCards(cards);
+        _table.AddCards(cards);
     }
     
     // Сбросить карты из руки (удалить и взять новые из колоды)
@@ -78,6 +58,7 @@ public class CardTransferManager
         
         // Добиваем руку до 5 карт
         int needed = _hand.MaxSize - _hand.Count;
+        
         if (needed > 0)
         {
             var newCards = _deck.Draw(needed);
