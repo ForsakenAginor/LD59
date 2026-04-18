@@ -1,15 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
 public class TableVisual : MonoBehaviour
 {
-    private readonly List<CardVisual> _cards = new List<CardVisual>();
+    private readonly List<TableCardVisual> _cards = new List<TableCardVisual>();
 
-    [SerializeField] private CardVisual _cardVisualPrefab;
+    [SerializeField] private TableCardVisual _cardVisualPrefab;
     [SerializeField] private Transform _cardsContainer;
+    [SerializeField] private TableAnimation _tableAnimation;
 
     private CardTransferManager _cardTransferManager;
     private ScoreManager _scoreManager;
@@ -56,17 +58,10 @@ public class TableVisual : MonoBehaviour
 
     private IEnumerator PlayComboCoroutine()
     {
+        
+        yield return new WaitForSeconds(0.5f);
+        yield return _tableAnimation.Animate(_cards);
         yield return new WaitForSeconds(2f);
         _cardTransferManager.CommitTable();
-    }
-}
-
-public class TableAnimation : MonoBehaviour
-{
-    [SerializeField] private HandVisual _hand;
-
-    public IEnumerator Animate(List<CardVisual> cards)
-    {
-        yield return null;
     }
 }

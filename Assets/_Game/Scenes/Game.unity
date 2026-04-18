@@ -130,6 +130,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!1 &209570072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 209570074}
+  - component: {fileID: 209570073}
+  m_Layer: 0
+  m_Name: effects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &209570073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209570072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 918ada34ac544220be3f3801d68df986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TableAnimation
+  _scaleDuration: 0.5
+  _enlargeScale: {x: 1.1, y: 1.1, z: 1.1}
+  _smallScale: {x: 0.9, y: 0.9, z: 0.9}
+  _hand: {fileID: 265620741}
+--- !u!4 &209570074
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209570072}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1209056595}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &265620738
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,8 +228,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be10b63b0e6043e78af2e7891e0e97d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TableVisual
-  _cardVisualPrefab: {fileID: 7511852868810306174, guid: 148b0c7ad84becb4f951f971fe906a08, type: 3}
+  _cardVisualPrefab: {fileID: 7590078767464625561, guid: fbad66c62de7dc4428612e694975c2bc, type: 3}
   _cardsContainer: {fileID: 1572420271}
+  _tableAnimation: {fileID: 209570073}
 --- !u!114 &265620741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1150,6 +1199,7 @@ Transform:
   m_Children:
   - {fileID: 424634619}
   - {fileID: 265620739}
+  - {fileID: 209570074}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1209056596

@@ -103,7 +103,8 @@ public class HandVisual : MonoBehaviour
         if (_selectedCards.Count > 0)
         {
             _scoreManager.CalculatePreview(_selectedCards.Select(o => o.Card).ToList(), out int baseScore,
-                out float multiplier, out CombinationType combinationType, out CombinationResult _combination);
+                out float multiplier, out CombinationType combinationType, out CombinationResult combination);
+            _combination = combination;
             SelectedCardsChanged?.Invoke(new PreviewData(combinationType, multiplier, baseScore));
         }
         else
