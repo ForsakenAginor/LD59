@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 265620742}
   - component: {fileID: 265620744}
   - component: {fileID: 265620745}
+  - component: {fileID: 265620746}
   m_Layer: 0
   m_Name: Gameplay
   m_TagString: Untagged
@@ -256,6 +257,22 @@ MonoBehaviour:
   _rerolls: {fileID: 725154570}
   _signals: {fileID: 1868277333}
   _gameManager: {fileID: 265620742}
+--- !u!114 &265620746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265620738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d28fb37df4f4f30b134a8c53e534fbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TablePreview
+  _comboName: {fileID: 760598185450872948}
+  _base: {fileID: 760598185450872947}
+  _multiplier: {fileID: 760598185450872946}
+  _hand: {fileID: 265620741}
 --- !u!1 &318441128
 GameObject:
   m_ObjectHideFlags: 0
@@ -1827,6 +1844,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5954620508344596815, guid: 56afb6b4fd1d1ab409d1ff9c6e760079, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.06786222
+      objectReference: {fileID: 0}
+    - target: {fileID: 5954620508344596815, guid: 56afb6b4fd1d1ab409d1ff9c6e760079, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.06786222
+      objectReference: {fileID: 0}
+    - target: {fileID: 5954620508344596815, guid: 56afb6b4fd1d1ab409d1ff9c6e760079, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.5754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 5954620508344596815, guid: 56afb6b4fd1d1ab409d1ff9c6e760079, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4279308691
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556601125172952547, guid: 56afb6b4fd1d1ab409d1ff9c6e760079, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.7408141
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556601125172952547, guid: 56afb6b4fd1d1ab409d1ff9c6e760079, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.8301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556601125172952547, guid: 56afb6b4fd1d1ab409d1ff9c6e760079, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.1527234
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556601125172952547, guid: 56afb6b4fd1d1ab409d1ff9c6e760079, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290630695
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1835,6 +1884,39 @@ PrefabInstance:
 --- !u!114 &760598185450872945 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1503186738838056127, guid: 56afb6b4fd1d1ab409d1ff9c6e760079, type: 3}
+  m_PrefabInstance: {fileID: 760598185450872944}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &760598185450872946 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5954620508344596815, guid: 56afb6b4fd1d1ab409d1ff9c6e760079, type: 3}
+  m_PrefabInstance: {fileID: 760598185450872944}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &760598185450872947 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7556601125172952547, guid: 56afb6b4fd1d1ab409d1ff9c6e760079, type: 3}
+  m_PrefabInstance: {fileID: 760598185450872944}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &760598185450872948 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2712088019855477061, guid: 56afb6b4fd1d1ab409d1ff9c6e760079, type: 3}
   m_PrefabInstance: {fileID: 760598185450872944}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

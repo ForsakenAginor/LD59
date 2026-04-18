@@ -60,3 +60,13 @@ public class TableVisual : MonoBehaviour
         _cardTransferManager.CommitTable();
     }
 }
+
+public class TableAnimation : MonoBehaviour
+{
+    [SerializeField] private HandVisual _hand;
+
+    public IEnumerator Animate(List<CardVisual> cards)
+    {
+        yield return null;
+    }
+}

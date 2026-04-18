@@ -54,17 +54,22 @@ public class ScoreManager
         
         return roundScore;
     }
-    
-    /// <summary>
-    /// Только рассчитать, не добавляя к счёту (для превью)
-    /// </summary>
-    public float CalculatePreview(List<Card> tableCards, float globalModifier = 1f)
+
+    public void CalculatePreview(List<Card> tableCards, out int baseScore, out float multiplier, out CombinationType combinationType, out CombinationResult bestCombo)
     {
-        if (tableCards == null || tableCards.Count == 0)
-            return 0;
+        if (tableCards == null)
+            throw new ArgumentException("Table cards are required");
         
-        var bestCombo = _calculator.GetBestCombination(tableCards);
-        return bestCombo.Multiplier * globalModifier;
+        bestCombo = _calculator.GetBestCombination(tableCards);
+        baseScore = 0;
+        
+        foreach (Card card in bestCombo.UsedCards)
+        {
+            baseScore += _cardValueConfiguration.GetValue(card.Frequency);
+        }
+        
+        multiplier = bestCombo.Multiplier;
+        combinationType = bestCombo.Type;
     }
     
     public void ResetScore()

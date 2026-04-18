@@ -37,6 +37,12 @@ namespace Assets.Source.Scripts.DI.Installers
                 .To<ConfigurationProvider>()
                 .FromInstance(_configurationProvider)
                 .AsCached();
+            
+            Container
+                .Bind<ICombinationsConfiguration>()
+                .To<ConfigurationProvider>()
+                .FromInstance(_configurationProvider)
+                .AsCached();
         }
 
         private void InitSceneChanger()
