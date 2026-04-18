@@ -233,6 +233,10 @@ MonoBehaviour:
   _cardVisualPrefab: {fileID: 7590078767464625561, guid: fbad66c62de7dc4428612e694975c2bc, type: 3}
   _cardsContainer: {fileID: 1572420271}
   _tableAnimation: {fileID: 209570073}
+  _cardWidth: 200
+  _cardSpacing: 20
+  _flyInInterval: 0.08
+  _flyOutInterval: 0.06
 --- !u!114 &265620741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1389,8 +1393,8 @@ Canvas:
   m_GameObject: {fileID: 1725158929}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 330585545}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1806,8 +1810,8 @@ Canvas:
   m_GameObject: {fileID: 2016900924}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 330585545}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1913,6 +1917,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8295665821783257138, guid: 56afb6b4fd1d1ab409d1ff9c6e760079, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 330585545}
+    - target: {fileID: 8295665821783257138, guid: 56afb6b4fd1d1ab409d1ff9c6e760079, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1981,6 +1993,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 735766221}
     m_Modifications:
+    - target: {fileID: 1017576446772961785, guid: 0d7a13c4ac964d44fbed15f87e839d02, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235638717215307301, guid: 0d7a13c4ac964d44fbed15f87e839d02, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -964
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235638717215307301, guid: 0d7a13c4ac964d44fbed15f87e839d02, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -125
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235638717215307301, guid: 0d7a13c4ac964d44fbed15f87e839d02, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235638717215307301, guid: 0d7a13c4ac964d44fbed15f87e839d02, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 97.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523606844256243196, guid: 0d7a13c4ac964d44fbed15f87e839d02, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 330585545}
+    - target: {fileID: 4523606844256243196, guid: 0d7a13c4ac964d44fbed15f87e839d02, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8330837541961888690, guid: 0d7a13c4ac964d44fbed15f87e839d02, type: 3}
       propertyPath: m_Name
       value: TableCanvas
@@ -2162,6 +2202,14 @@ PrefabInstance:
     - target: {fileID: 649306356311041068, guid: 4c80e710e297d3c43ab4982f1db4a8a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641315622153516184, guid: 4c80e710e297d3c43ab4982f1db4a8a7, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 330585545}
+    - target: {fileID: 1641315622153516184, guid: 4c80e710e297d3c43ab4982f1db4a8a7, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6229540171571725400, guid: 4c80e710e297d3c43ab4982f1db4a8a7, type: 3}
       propertyPath: m_Name
