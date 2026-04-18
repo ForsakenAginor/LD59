@@ -11,9 +11,9 @@ public class ScoreManager
     private int _currentScore;
     
     [Inject]
-    public ScoreManager(ICardValueConfiguration cardValueConfiguration)
+    public ScoreManager(ICardValueConfiguration cardValueConfiguration, CombinationCalculator calculator)
     {
-        _calculator = new CombinationCalculator();
+        _calculator = calculator;
         _cardValueConfiguration = cardValueConfiguration;
         
         _currentScore = 0;
@@ -44,11 +44,7 @@ public class ScoreManager
             tableCardsValue += _cardValueConfiguration.GetValue(card.Frequency);
         }
         
-        Debug.Log(tableCardsValue);
-        Debug.Log(bestCombo.Multiplier);
-        
         float roundScore = tableCardsValue * bestCombo.Multiplier * globalModifier;
-        Debug.Log(roundScore);
         _currentScore += (int)roundScore;
         ScoreChanged?.Invoke();
         

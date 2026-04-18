@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button _playHandButton;
     [SerializeField] private Button _discardHandButton;
 
+    [SerializeField] private TablePreview _tablePreview;
+    [SerializeField] private FlyingScore _flyingScore;
     [SerializeField] private ResourceVisual _resourceVisual;
     [SerializeField] private HandVisual _handVisual;
     [SerializeField] private TargetScoreVisual _targetScoreVisual;
@@ -91,8 +94,15 @@ public class GameManager : MonoBehaviour
 
     private void OnTableCommited()
     {
-        _scoreManager.CalculateAndAddScore(_table.SelectedCards.ToList(), 1f);
+        StartCoroutine(CalculateScore());
+    }
 
+    private IEnumerator CalculateScore()
+    {
+        int score = (int) _scoreManager.CalculateAndAddScore(_table.SelectedCards.ToList(), 1f);
+        yield return _flyingScore.Show(score);
+        _tablePreview.ClearPreview();
+        
         if (_scoreManager.CurrentScore >= _targetScore)
         {
             if (_level == LevelNumber.Fifth)
@@ -122,6 +132,7 @@ public class GameManager : MonoBehaviour
                 PlayerLose?.Invoke();
             }
         }
+        
     }
 
     private void OnPlayButtonClicked()

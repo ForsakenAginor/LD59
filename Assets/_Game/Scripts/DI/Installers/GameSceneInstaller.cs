@@ -36,6 +36,8 @@ namespace Assets.Source.Scripts.DI.Installers
 
         private void BindModelScripts()
         {
+            CombinationCalculator combinationCalculator = Container.Instantiate<CombinationCalculator>();
+            Container.Bind<CombinationCalculator>().To<CombinationCalculator>().FromInstance(combinationCalculator).AsSingle().NonLazy();
             ScoreManager scoreManager = Container.Instantiate<ScoreManager>();
             CardTransferManager cardTransferManager = new CardTransferManager();
 

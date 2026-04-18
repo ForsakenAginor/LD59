@@ -55,7 +55,7 @@ MonoBehaviour:
       Data: Single
     - Name: Multiplier
       Entry: 4
-      Data: 0
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -76,7 +76,7 @@ MonoBehaviour:
       Data: Pair
     - Name: Multiplier
       Entry: 4
-      Data: 0
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -97,7 +97,7 @@ MonoBehaviour:
       Data: Two pairs
     - Name: Multiplier
       Entry: 4
-      Data: 0
+      Data: 2.5
     - Name: 
       Entry: 8
       Data: 
@@ -118,7 +118,7 @@ MonoBehaviour:
       Data: Set
     - Name: Multiplier
       Entry: 4
-      Data: 0
+      Data: 4
     - Name: 
       Entry: 8
       Data: 
@@ -139,7 +139,7 @@ MonoBehaviour:
       Data: Small Flush
     - Name: Multiplier
       Entry: 4
-      Data: 0
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -160,7 +160,7 @@ MonoBehaviour:
       Data: Big Flush
     - Name: Multiplier
       Entry: 4
-      Data: 0
+      Data: 4.5
     - Name: 
       Entry: 8
       Data: 
@@ -181,7 +181,7 @@ MonoBehaviour:
       Data: Full Flush
     - Name: Multiplier
       Entry: 4
-      Data: 0
+      Data: 6
     - Name: 
       Entry: 8
       Data: 
@@ -202,7 +202,7 @@ MonoBehaviour:
       Data: Straight
     - Name: Multiplier
       Entry: 4
-      Data: 0
+      Data: 8
     - Name: 
       Entry: 8
       Data: 
@@ -223,7 +223,7 @@ MonoBehaviour:
       Data: Straight Flush
     - Name: Multiplier
       Entry: 4
-      Data: 0
+      Data: 12
     - Name: 
       Entry: 8
       Data: 
@@ -244,7 +244,7 @@ MonoBehaviour:
       Data: Full House
     - Name: Multiplier
       Entry: 4
-      Data: 0
+      Data: 6
     - Name: 
       Entry: 8
       Data: 
@@ -265,7 +265,7 @@ MonoBehaviour:
       Data: Four
     - Name: Multiplier
       Entry: 4
-      Data: 0
+      Data: 7
     - Name: 
       Entry: 8
       Data: 
@@ -286,7 +286,7 @@ MonoBehaviour:
       Data: Royal Straight Flush
     - Name: Multiplier
       Entry: 4
-      Data: 0
+      Data: 25
     - Name: 
       Entry: 8
       Data: 
