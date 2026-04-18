@@ -39,8 +39,8 @@ public class CardVisual : MonoBehaviour, IPointerClickHandler
         string suitStr = card.Suit switch
         {
             Suit.Sine => "~",
-            Suit.Saw => "ᛛ",
-            Suit.Digital => "▤",
+            Suit.Saw => "^",
+            Suit.Digital => "!",
             _ => "?"
         };
         
