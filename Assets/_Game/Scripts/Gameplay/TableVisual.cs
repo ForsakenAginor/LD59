@@ -58,7 +58,6 @@ public class TableVisual : MonoBehaviour
 
     private IEnumerator PlayComboCoroutine()
     {
-        
         yield return new WaitForSeconds(0.5f);
         yield return _tableAnimation.Animate(_cards);
         _cardTransferManager.CommitTable();

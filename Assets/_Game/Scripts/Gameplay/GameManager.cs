@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button _playHandButton;
     [SerializeField] private Button _discardHandButton;
 
+    [SerializeField] private TablePreview _tablePreview;
     [SerializeField] private FlyingScore _flyingScore;
     [SerializeField] private ResourceVisual _resourceVisual;
     [SerializeField] private HandVisual _handVisual;
@@ -100,6 +101,7 @@ public class GameManager : MonoBehaviour
     {
         int score = (int) _scoreManager.CalculateAndAddScore(_table.SelectedCards.ToList(), 1f);
         yield return _flyingScore.Show(score);
+        _tablePreview.ClearPreview();
         
         if (_scoreManager.CurrentScore >= _targetScore)
         {

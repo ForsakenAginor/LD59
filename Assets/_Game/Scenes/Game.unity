@@ -261,6 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   _playHandButton: {fileID: 1073583778}
   _discardHandButton: {fileID: 106976104}
+  _tablePreview: {fileID: 265620746}
   _flyingScore: {fileID: 760598185450872949}
   _resourceVisual: {fileID: 265620745}
   _handVisual: {fileID: 265620741}

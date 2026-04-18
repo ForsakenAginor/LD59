@@ -56,13 +56,15 @@ public class TablePreview : MonoBehaviour
         }
     }
 
-    private void ClearPreview()
+    public void ClearPreview()
     {
         _comboName.text = "";
         _base.text = "0";
         _multiplier.text = "0";
         _currentBase = 0;
         _currentMultiplier = 0f;
+        _base.fontSize = 20f;
+        _multiplier.fontSize = 20f;
     }
 
     private void OnSelectedCardsChanged(PreviewData data)
@@ -109,7 +111,7 @@ public class TablePreview : MonoBehaviour
                 _currentBase = _targetBase;
 
             _base.text = _currentBase.ToString();
-            _base.fontSize = math.remap(0, _maxBase, 20, 40, _currentBase);
+            _base.fontSize = math.remap(0, _maxBase, 20, 35, _currentBase);
 
             yield return null;
         }
@@ -129,7 +131,7 @@ public class TablePreview : MonoBehaviour
                 _currentMultiplier = _targetMultiplier;
 
             _multiplier.text = _currentMultiplier.ToString("0.00");
-            _multiplier.fontSize = math.remap(0, _maxMultiplier, 20, 40, _currentMultiplier);
+            _multiplier.fontSize = math.remap(0, _maxMultiplier, 20, 35, _currentMultiplier);
 
             yield return null;
         }
