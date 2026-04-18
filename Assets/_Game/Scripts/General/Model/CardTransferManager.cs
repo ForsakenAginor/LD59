@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class CardTransferManager
 {
@@ -11,7 +12,7 @@ public class CardTransferManager
     public CardTransferManager()
     {
         _deck = new Deck();
-        _hand = new Hand(5);
+        _hand = new Hand(8);
         _table = new Table();
     }
 
@@ -22,8 +23,11 @@ public class CardTransferManager
     public void DrawCards(int amount)
     {
         //_hand.Clear();
-        if(amount <= 0 || amount > _hand.Count)
+        if (amount <= 0 || amount > _deck.Count)
+        {
+            Debug.Log(_deck.Count);
             throw new Exception("Not enough cards");
+        }
         
         var cards = _deck.Draw(amount);
         _hand.AddCards(cards);

@@ -6,7 +6,7 @@ public class Hand
 {
     private readonly List<Card> _cards;
     
-    public Hand(int maxSize = 8)
+    public Hand(int maxSize)
     {
         MaxSize = maxSize;
         _cards = new List<Card>();

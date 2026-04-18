@@ -27,14 +27,16 @@ public class HandVisual : MonoBehaviour
     {
         _cardTransferManager = transferManager;
         _hand = _cardTransferManager.Hand;
+        
         _playHandButton.onClick.AddListener(PlayHand);
+        _hand.CardAdded += OnCardAdded;
+        _hand.CardRemoved += OnCardRemoved;
     }
 
     private void OnDestroy()
     {
-
-        _hand.CardAdded += OnCardAdded;
-        _hand.CardRemoved += OnCardRemoved;
+        _hand.CardAdded -= OnCardAdded;
+        _hand.CardRemoved -= OnCardRemoved;
         _playHandButton.onClick.RemoveListener(PlayHand);
     }
 

@@ -31,6 +31,7 @@ namespace Assets.Source.Scripts.DI.Installers
             BindTimeIncrement();
             BindHealthVignetteEffect();
             BindNoiceVignetteEffect();
+            BindModelScripts();
         }
 
         private void BindModelScripts()

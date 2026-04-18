@@ -20,19 +20,19 @@ public class CardVisual : MonoBehaviour, IPointerClickHandler
         
         string freqStr = card.Frequency switch
         {
-            Frequency._100Hz => "100",
-            Frequency._200Hz => "200",
-            Frequency._300Hz => "300",
-            Frequency._400Hz => "400",
-            Frequency._500Hz => "500",
-            Frequency._600Hz => "600",
-            Frequency._700Hz => "700",
-            Frequency._800Hz => "800",
-            Frequency._900Hz => "900",
-            Frequency._1000Hz => "1000",
-            Frequency._1200Hz => "1200",
-            Frequency._1500Hz => "1500",
-            Frequency._2000Hz => "2000",
+            Frequency._100Hz => "100Hz",
+            Frequency._200Hz => "200Hz",
+            Frequency._300Hz => "300Hz",
+            Frequency._400Hz => "400Hz",
+            Frequency._500Hz => "500Hz",
+            Frequency._600Hz => "600Hz",
+            Frequency._700Hz => "700Hz",
+            Frequency._800Hz => "800Hz",
+            Frequency._900Hz => "900Hz",
+            Frequency._1000Hz => "1000Hz",
+            Frequency._1200Hz => "1200Hz",
+            Frequency._1500Hz => "1500Hz",
+            Frequency._2000Hz => "2000Hz",
             _ => "?"
         };
         
