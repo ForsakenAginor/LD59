@@ -11,11 +11,10 @@ public class Deck
     public Deck()
     {
         _random = new System.Random();
-        Initialize();
+        Fill();
     }
     
-    // Создаёт полную колоду (3 масти × 13 частот = 39 карт)
-    private void Initialize()
+    public void Fill()
     {
         _cards = new List<Card>();
         
@@ -55,10 +54,12 @@ public class Deck
     public List<Card> Draw(int count)
     {
         List<Card> drawn = new List<Card>();
+        
         for (int i = 0; i < count && !IsEmpty; i++)
         {
             drawn.Add(Draw());
         }
+        
         return drawn;
     }
     

@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -5,25 +7,37 @@ using Zenject;
 public class TableVisual : MonoBehaviour
 {
     private readonly List<CardVisual> _cards = new List<CardVisual>();
-    
+
     [SerializeField] private CardVisual _cardVisualPrefab;
     [SerializeField] private Transform _cardsContainer;
-    
+
     private CardTransferManager _cardTransferManager;
+    private ScoreManager _scoreManager;
     private Table _table;
-    
+
     [Inject]
-    public void Construct(CardTransferManager transferManager)
+    public void Construct(ScoreManager scoreManager, CardTransferManager transferManager)
     {
+        _scoreManager = scoreManager;
         _cardTransferManager = transferManager;
         _table = _cardTransferManager.Table;
 
         _table.TableRefreshed += OnTableRefreshed;
+        _table.TableCleared += OnTableCleared;
     }
 
     private void OnDestroy()
     {
         _table.TableRefreshed -= OnTableRefreshed;
+        _table.TableCleared -= OnTableCleared;
+    }
+
+    private void OnTableCleared()
+    {
+        for(int i = 0; i < _cards.Count; i++)
+            Destroy(_cards[i].gameObject);
+
+        _cards.Clear();
     }
 
     private void OnTableRefreshed()
@@ -33,7 +47,16 @@ public class TableVisual : MonoBehaviour
         foreach (Card card in collection)
         {
             var cardVisual = Instantiate(_cardVisualPrefab, _cardsContainer);
+            cardVisual.Init(card);
             _cards.Add(cardVisual);
         }
+
+        StartCoroutine(PlayComboCoroutine());
+    }
+
+    private IEnumerator PlayComboCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+        _cardTransferManager.CommitTable();
     }
 }

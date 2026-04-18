@@ -12,6 +12,8 @@ namespace Assets.Source.Scripts.EntryPoint
 {
     public class Root : MonoBehaviour
     {
+        [SerializeField] private GameManager _gameManager;
+        
         [Header("Other")]
         [SerializeField] private AudioSaveLoadService _soundInitializer;
         [SerializeField] private Button _closeButton;
@@ -36,11 +38,16 @@ namespace Assets.Source.Scripts.EntryPoint
 
         private void Start()
         {
+            _gameManager.Init(LevelNumber.First);
+            _gameManager.PlayerWon += OnPlayerWon;
+            _gameManager.PlayerLose += OnPlayerLose;
+            
             LoadData();
-
+            
             _closeButton.onClick.AddListener(OnCloseButtonClick);
             _sceneChanger.FadeOut();
             Time.timeScale = 1f;
+            
         }
 
         private void OnDestroy()
@@ -48,6 +55,18 @@ namespace Assets.Source.Scripts.EntryPoint
             _healthVignette.Disable();
             _noiceVignette.Disable();
             _closeButton.onClick.RemoveListener(OnCloseButtonClick);
+            _gameManager.PlayerWon -= OnPlayerWon;
+            _gameManager.PlayerLose -= OnPlayerLose;
+        }
+
+        private void OnPlayerLose()
+        {
+            Debug.Log("Player lose");
+        }
+
+        private void OnPlayerWon()
+        {
+            Debug.Log("Player Won");
         }
 
         private void SaveData()

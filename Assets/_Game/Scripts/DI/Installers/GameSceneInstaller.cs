@@ -36,7 +36,7 @@ namespace Assets.Source.Scripts.DI.Installers
 
         private void BindModelScripts()
         {
-            ScoreManager scoreManager = new ScoreManager();
+            ScoreManager scoreManager = Container.Instantiate<ScoreManager>();
             CardTransferManager cardTransferManager = new CardTransferManager();
 
             Container.Bind<ScoreManager>().To<ScoreManager>().FromInstance(scoreManager).AsSingle().NonLazy();

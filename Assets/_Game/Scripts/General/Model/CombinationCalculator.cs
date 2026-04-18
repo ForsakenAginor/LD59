@@ -31,7 +31,7 @@ public class CombinationCalculator
         var allCombinations = new List<CombinationResult>();
         
         // Генерируем все возможные подмножества от 3 до 5 карт (плюс одиночная на всякий)
-        for (int size = 3; size <= Math.Min(5, cards.Count); size++)
+        for (int size = 2; size <= Math.Min(5, cards.Count); size++)
         {
             var subsets = GetCombinations(cards, size);
             foreach (var subset in subsets)
@@ -74,14 +74,15 @@ public class CombinationCalculator
         if (IsBigFlush(cards))
             return new CombinationResult(CombinationType.BigFlush, 4.5f, cards);
         
+        if (IsSet(cards, out var setCards))
+            return new CombinationResult(CombinationType.Set, 4f, setCards);
+        
         if (IsStraight(cards))
             return new CombinationResult(CombinationType.Straight, 3.5f, cards);
         
         if (IsSmallFlush(cards))
             return new CombinationResult(CombinationType.SmallFlush, 3f, cards);
         
-        if (IsSet(cards, out var setCards))
-            return new CombinationResult(CombinationType.Set, 4f, setCards);
         
         if (IsTwoPairs(cards, out var twoPairsCards))
             return new CombinationResult(CombinationType.TwoPairs, 2.5f, twoPairsCards);
@@ -89,7 +90,20 @@ public class CombinationCalculator
         if (IsPair(cards, out var pairCards))
             return new CombinationResult(CombinationType.Pair, 2f, pairCards);
         
-        return new CombinationResult(CombinationType.Single, 0f, null);
+        GetHighestCard(cards, out var highestCard);
+        return new CombinationResult(CombinationType.Single, 1f, highestCard);
+    }
+
+    private void GetHighestCard(List<Card> cards, out List<Card> highestCards)
+    {
+        if (cards == null || cards.Count == 0)
+        {
+            highestCards = new List<Card>();
+            return;
+        }
+    
+        var bestCard = cards.OrderByDescending(c => FrequencyOrder.IndexOf(c.Frequency)).First();
+        highestCards = new List<Card> { bestCard };
     }
     
     private CombinationResult EvaluateSingle(List<Card> cards)

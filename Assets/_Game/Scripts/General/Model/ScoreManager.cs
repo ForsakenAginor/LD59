@@ -1,23 +1,33 @@
+using System;
 using System.Collections.Generic;
+using UnityEngine;
+using Zenject;
 
 public class ScoreManager
 {
-    private float _currentScore;
-    private CombinationCalculator _calculator;
+    private readonly CombinationCalculator _calculator;
+    private readonly ICardValueConfiguration _cardValueConfiguration;
     
-    public float CurrentScore => _currentScore;
+    private int _currentScore;
     
-    public ScoreManager()
+    [Inject]
+    public ScoreManager(ICardValueConfiguration cardValueConfiguration)
     {
-        _currentScore = 0;
         _calculator = new CombinationCalculator();
+        _cardValueConfiguration = cardValueConfiguration;
+        
+        _currentScore = 0;
     }
+
+    public event Action ScoreChanged; 
+    
+    public int CurrentScore => _currentScore;
     
     /// <summary>
     /// Рассчитывает очки для карт на столе и добавляет их к общему счёту
     /// </summary>
     /// <returns>Очки за эту комбинацию</returns>
-    public float CalculateAndAddScore(List<Card> tableCards, float globalModifier = 1f)
+    public float CalculateAndAddScore(List<Card> tableCards, float globalModifier)
     {
         if (tableCards == null || tableCards.Count == 0)
             return 0;
@@ -26,9 +36,21 @@ public class ScoreManager
         
         if (bestCombo.Multiplier <= 0)
             return 0;
+
+        int tableCardsValue = 0;
+
+        foreach (Card card in bestCombo.UsedCards)
+        {
+            tableCardsValue += _cardValueConfiguration.GetValue(card.Frequency);
+        }
         
-        float roundScore = bestCombo.Multiplier * globalModifier;
-        _currentScore += roundScore;
+        Debug.Log(tableCardsValue);
+        Debug.Log(bestCombo.Multiplier);
+        
+        float roundScore = tableCardsValue * bestCombo.Multiplier * globalModifier;
+        Debug.Log(roundScore);
+        _currentScore += (int)roundScore;
+        ScoreChanged?.Invoke();
         
         return roundScore;
     }
@@ -48,5 +70,6 @@ public class ScoreManager
     public void ResetScore()
     {
         _currentScore = 0;
+        ScoreChanged?.Invoke();
     }
 }

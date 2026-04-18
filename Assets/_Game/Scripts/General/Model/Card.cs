@@ -43,16 +43,4 @@ public class Card
         return $"{suitStr}{freqStr}Hz";
     }
     
-    // Для сравнения карт
-    public override bool Equals(object obj)
-    {
-        if (obj is Card other)
-            return Suit == other.Suit && Frequency == other.Frequency;
-        return false;
-    }
-    
-    public override int GetHashCode()
-    {
-        return HashCode.Combine(Suit, Frequency);
-    }
 }

@@ -75,4 +75,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneChanger: {fileID: 8551231405057364777, guid: 2e8367014b6952e45a094ba585793b45, type: 3}
-  _musicSource: {fileID: 1075368181679807559, guid: 82a1b632d2442ce49860f784a51d99bb, type: 3}
+  _configurationProvider: {fileID: 11400000, guid: e23c5a736bcc3644ea889816894b9362, type: 2}

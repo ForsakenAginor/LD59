@@ -40,6 +40,14 @@ public class Hand
             CardAdded?.Invoke(card);
         }
     }
+
+    public void ClearHand()
+    {
+        for (int i = _cards.Count - 1; i >= 0; i--)
+        {
+            RemoveCard(_cards[i]);
+        }
+    }
     
     public Card RemoveCard(int index)
     {

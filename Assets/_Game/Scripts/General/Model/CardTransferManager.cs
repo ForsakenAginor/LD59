@@ -20,19 +20,6 @@ public class CardTransferManager
     public Hand Hand => _hand;
     public Table Table => _table;
     
-    public void DrawCards(int amount)
-    {
-        //_hand.Clear();
-        if (amount <= 0 || amount > _deck.Count)
-        {
-            Debug.Log(_deck.Count);
-            throw new Exception("Not enough cards");
-        }
-        
-        var cards = _deck.Draw(amount);
-        _hand.AddCards(cards);
-    }
-    
     public void MoveToTable(IEnumerable<Card> cards)
     {
         if(cards == null || cards.Count() == 0)
@@ -42,43 +29,32 @@ public class CardTransferManager
         _table.AddCards(cards);
     }
     
-    // Сбросить карты из руки (удалить и взять новые из колоды)
-    public void DiscardAndDraw(List<int> handIndices)
-    {
-        var discarded = _hand.RemoveCards(handIndices);
-        // Сброшенные карты возвращаются в колоду (перемешивать не обязательно)
-        _deck.AddCards(discarded);
-        
-        // Добираем столько же новых
-        var newCards = _deck.Draw(discarded.Count);
-        _hand.AddCards(newCards);
-    }
-    
     // Зафиксировать комбинацию на столе (очистить стол и добить руку)
-    public void CommitTableAndRefill()
+    public void CommitTable()
     {
-        // Очищаем стол (карты уходят в никуда — они сыграны)
+        _table.Commit();
         _table.Clear();
-        
-        // Добиваем руку до 5 карт
+    }
+
+    public void RefillHand()
+    {
         int needed = _hand.MaxSize - _hand.Count;
         
-        if (needed > 0)
+        if (needed <= _deck.Count)
+        {
+            needed = _deck.Count;
+            var newCards = _deck.Draw(needed);
+            _hand.AddCards(newCards);
+            
+            _deck.Fill();
+            needed = _hand.MaxSize - _hand.Count;
+            newCards = _deck.Draw(needed);
+            _hand.AddCards(newCards);
+        }
+        else
         {
             var newCards = _deck.Draw(needed);
             _hand.AddCards(newCards);
         }
-        
-        // Если колода пуста — перемешиваем сброс? (опционально)
-        if (_deck.IsEmpty)
-        {
-            // Здесь можно сделать reshuffle из отыгранных карт, но пока пропустим
-        }
     }
-    
-    // Получить текущее состояние руки (для UI)
-    public List<Card> GetHandCards() => _hand.Cards.ToList();
-    
-    // Получить текущее состояние стола
-    public List<Card> GetTableCards() => _table.SelectedCards.ToList();
 }

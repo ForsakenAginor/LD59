@@ -12,8 +12,7 @@ public class HandVisual : MonoBehaviour
     
     private readonly Dictionary<Card, CardVisual> _cards = new Dictionary<Card, CardVisual>();
     private readonly List<CardVisual> _selectedCards = new List<CardVisual>();
-
-    [SerializeField] private Button _playHandButton;
+    
     [SerializeField] private CardVisual _cardVisualPrefab;
     [SerializeField] private Transform _cardsInHandContainer;
     
@@ -22,13 +21,14 @@ public class HandVisual : MonoBehaviour
 
     private bool _isBlocked;
     
+    public bool CanPlayHand => _selectedCards.Count > 0;
+    
     [Inject]
     public void Construct(CardTransferManager transferManager)
     {
         _cardTransferManager = transferManager;
         _hand = _cardTransferManager.Hand;
         
-        _playHandButton.onClick.AddListener(PlayHand);
         _hand.CardAdded += OnCardAdded;
         _hand.CardRemoved += OnCardRemoved;
     }
@@ -37,7 +37,21 @@ public class HandVisual : MonoBehaviour
     {
         _hand.CardAdded -= OnCardAdded;
         _hand.CardRemoved -= OnCardRemoved;
-        _playHandButton.onClick.RemoveListener(PlayHand);
+    }
+
+    public void PlaySelectedCards()
+    {
+        _isBlocked = true;
+        IEnumerable<Card> cards = _selectedCards.Select(card => card.Card);
+        _cardTransferManager.MoveToTable(cards);
+        _selectedCards.Clear();
+    }
+
+    public void DiscardSelectedCards()
+    {
+        IEnumerable<Card> cards = _selectedCards.Select(card => card.Card);
+        _hand.RemoveCards(cards);
+        _selectedCards.Clear();
     }
 
     private void OnCardAdded(Card card)
@@ -46,6 +60,7 @@ public class HandVisual : MonoBehaviour
             cardVisual.Init(card);
             _cards.Add(card, cardVisual);
             cardVisual.OnClick += OnCardClick;
+            _isBlocked = false;
     }
 
     private void OnCardRemoved(Card card)
@@ -57,15 +72,7 @@ public class HandVisual : MonoBehaviour
         Destroy(_cards[card].gameObject);
         _cards.Remove(card);
     }
-
-    [Button]
-    public void DrawCards(int amount)
-    {
-        _selectedCards.Clear();
-        _cardTransferManager.DrawCards(amount);
-        
-    }
-
+    
     private void OnCardClick(CardVisual cardVisual)
     {
         if(_isBlocked)
@@ -83,14 +90,4 @@ public class HandVisual : MonoBehaviour
         }
     }
 
-    private void PlayHand()
-    {
-        if(_selectedCards.Count == 0)
-            return;
-        
-        _playHandButton.interactable = false;
-        _isBlocked = true;
-        IEnumerable<Card> cards = _selectedCards.Select(card => card.Card);
-        _cardTransferManager.MoveToTable(cards);
-    }
 }

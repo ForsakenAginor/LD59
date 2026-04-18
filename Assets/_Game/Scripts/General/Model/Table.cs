@@ -3,14 +3,11 @@ using System.Collections.Generic;
 
 public class Table
 {
-    private List<Card> _selectedCards;
-    
-    public Table()
-    {
-        _selectedCards = new List<Card>();
-    }
-    
+    private readonly List<Card> _selectedCards = new();
+
     public event Action TableRefreshed;
+    public event Action TableCleared;
+    public event Action TableCommited;
     
     public IReadOnlyList<Card> SelectedCards => _selectedCards;
     
@@ -19,6 +16,12 @@ public class Table
     public void Clear()
     {
         _selectedCards.Clear();
+        TableCleared?.Invoke();
+    }
+
+    public void Commit()
+    {
+        TableCommited?.Invoke();
     }
     
     public void AddCards(IEnumerable<Card> cards)
