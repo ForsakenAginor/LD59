@@ -2264,11 +2264,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5454977409025776522, guid: 56afb6b4fd1d1ab409d1ff9c6e760079, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 57.68
+      value: 57.679688
       objectReference: {fileID: 0}
     - target: {fileID: 5454977409025776522, guid: 56afb6b4fd1d1ab409d1ff9c6e760079, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -35.900024
+      value: -35.900146
       objectReference: {fileID: 0}
     - target: {fileID: 5921170701207928554, guid: 56afb6b4fd1d1ab409d1ff9c6e760079, type: 3}
       propertyPath: m_fontColor.b
