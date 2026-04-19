@@ -238,8 +238,8 @@ MonoBehaviour:
   _cardVisualPrefab: {fileID: 7590078767464625561, guid: fbad66c62de7dc4428612e694975c2bc, type: 3}
   _cardsContainer: {fileID: 1572420271}
   _tableAnimation: {fileID: 209570073}
-  _cardWidth: 200
-  _cardSpacing: 20
+  _cardWidth: 100
+  _cardSpacing: 24
   _flyInInterval: 0.08
   _flyOutInterval: 0.06
 --- !u!114 &265620741
@@ -256,6 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HandVisual
   _cardVisualPrefab: {fileID: 7511852868810306174, guid: 148b0c7ad84becb4f951f971fe906a08, type: 3}
   _cardsInHandContainer: {fileID: 415720678}
+  _layout: {fileID: 1908271751}
 --- !u!114 &265620742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1898,6 +1899,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8824778776545457550, guid: 0d7a13c4ac964d44fbed15f87e839d02, type: 3}
   m_PrefabInstance: {fileID: 5135791719416950276}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1908271751 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1343220633682092943, guid: 4c80e710e297d3c43ab4982f1db4a8a7, type: 3}
+  m_PrefabInstance: {fileID: 7108789622841638482}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c79c0e10e349ea9dcb87976a323868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleOverlapHand
 --- !u!1 &2016900924
 GameObject:
   m_ObjectHideFlags: 0
@@ -2803,6 +2815,10 @@ PrefabInstance:
     - target: {fileID: 649306356311041068, guid: 4c80e710e297d3c43ab4982f1db4a8a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343220633682092943, guid: 4c80e710e297d3c43ab4982f1db4a8a7, type: 3}
+      propertyPath: _maxAngle
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1641315622153516184, guid: 4c80e710e297d3c43ab4982f1db4a8a7, type: 3}
       propertyPath: m_Camera

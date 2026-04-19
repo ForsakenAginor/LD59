@@ -63,7 +63,7 @@ public class TableVisual : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             var cardVisual = _instantiateWrapper.Instantiate(_cardVisualPrefab, _cardsContainer);
-            cardVisual.Init(card);
+            cardVisual.Init(collection[i]);
 
             // Выставляем позицию карты
             RectTransform rect = cardVisual.GetComponent<RectTransform>();
