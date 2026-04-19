@@ -5,6 +5,7 @@ using Assets.Source.Scripts.DI.Services.Global;
 using Assets.Source.Scripts.Utility;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -20,6 +21,8 @@ public class JokerManager : MonoBehaviour
     [SerializeField] private JokerCard _jokerPrefab;
 
     [Header("Selection")]
+    [SerializeField] private TMP_Text _levelBypassText;
+    [SerializeField] private SwitchableElement _chooseJokerText;
     [SerializeField] private JokerSelectionCard[] _jokerSelectionCards;
     [SerializeField] private float _animationDuration = 0.3f;
     [SerializeField] private SwitchableElement _jokerSelectionPanel;
@@ -68,7 +71,11 @@ public class JokerManager : MonoBehaviour
             _jokerSelectionCards[i].SetInteractable(false);
         }
 
+        _levelBypassText.transform.localScale = Vector3.one * 20f;
+        _chooseJokerText.Disable();
         _jokerSelectionPanel.Enable();
+        yield return _levelBypassText.transform.DOScale(Vector3.one, 1f).WaitForCompletion();
+        _chooseJokerText.Enable();
 
         for (int i = 0; i < _jokerSelectionCards.Length; i++)
         {

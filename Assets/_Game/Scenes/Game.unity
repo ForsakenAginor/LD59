@@ -152,6 +152,8 @@ MonoBehaviour:
   _preview: {fileID: 265620746}
   _jokerContainer: {fileID: 716919351352229206}
   _jokerPrefab: {fileID: 7393339147639133611, guid: 928946a676bb32a4fbcc46e374e7980f, type: 3}
+  _levelBypassText: {fileID: 2119380841}
+  _chooseJokerText: {fileID: 2119380840}
   _jokerSelectionCards:
   - {fileID: 3765284115122774595}
   - {fileID: 3765284115122774594}
@@ -2009,6 +2011,28 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 5
   m_TargetDisplay: 0
+--- !u!114 &2119380840 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7095057297737693462, guid: bf7966dddf7ccdf458f7bcb02178ebcc, type: 3}
+  m_PrefabInstance: {fileID: 3765284115122774591}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c096e5f8ea8c5334f8c2524ea9252527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Source.Scripts.Utility.SwitchableElement
+--- !u!114 &2119380841 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 316439558923734076, guid: bf7966dddf7ccdf458f7bcb02178ebcc, type: 3}
+  m_PrefabInstance: {fileID: 3765284115122774591}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!224 &716919351352229206 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1520188686057086391, guid: 4194dd9bb9375c849a7fbaf69d23c3f6, type: 3}
@@ -2481,6 +2505,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 1785892262838656518, guid: 4194dd9bb9375c849a7fbaf69d23c3f6, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5771151436754075340, guid: 4194dd9bb9375c849a7fbaf69d23c3f6, type: 3}
       propertyPath: m_Name
       value: JokerCanvas
