@@ -3,11 +3,13 @@
 namespace Assets.Source.Scripts.DI.Services.Boot
 {
     [CreateAssetMenu(fileName = "ConfigurationsProvider", menuName = "Services/ConfigurationsProvider")]
-    public class ConfigurationProvider : ScriptableObject, ICardValueConfiguration, ILevelDifficultyConfiguration, ICombinationsConfiguration
+    public class ConfigurationProvider : ScriptableObject, ICardValueConfiguration, ILevelDifficultyConfiguration, ICombinationsConfiguration,
+        IJokerConfiguration
     {
         [SerializeField] private CardValueConfiguration _cardValueConfiguration;
         [SerializeField] private LevelDifficultyConfiguration _levelDifficultyConfiguration;
         [SerializeField] private CombinationsConfiguration _combinationsConfiguration;
+        [SerializeField] private JokerConfiguration _jokerConfiguration;
         
         public int GetValue(Frequency frequency)
         {
@@ -22,5 +24,10 @@ namespace Assets.Source.Scripts.DI.Services.Boot
         }
         
         public Sprite GetIcon(Frequency frequency, Suit suit) => _cardValueConfiguration.GetIcon(frequency, suit);
+        
+        public JokerData GetJokerData(string jokerName)
+        {
+            return _jokerConfiguration.GetJokerData(jokerName);
+        }
     }
 }

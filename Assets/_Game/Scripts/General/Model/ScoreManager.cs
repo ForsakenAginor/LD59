@@ -45,10 +45,18 @@ public class ScoreManager
         }
         
         float roundScore = tableCardsValue * bestCombo.Multiplier * globalModifier;
+        
+        
         _currentScore += (int)roundScore;
         ScoreChanged?.Invoke();
         
         return roundScore;
+    }
+    
+    public void CalculateAndAddScore(int score)
+    {
+        _currentScore += score;
+        ScoreChanged?.Invoke();
     }
 
     public void CalculatePreview(List<Card> tableCards, out int baseScore, out float multiplier, out CombinationType combinationType, out CombinationResult bestCombo)

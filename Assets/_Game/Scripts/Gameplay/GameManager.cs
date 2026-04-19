@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
 
@@ -10,7 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button _playHandButton;
     [SerializeField] private Button _discardHandButton;
 
-    [SerializeField] private TablePreview _tablePreview;
+    [SerializeField] private JokerManager _jokerManager;
+    [FormerlySerializedAs("_tablePreview")] [SerializeField] private ScorePreview _scorePreview;
     [SerializeField] private FlyingScore _flyingScore;
     [SerializeField] private ResourceVisual _resourceVisual;
     [SerializeField] private HandVisual _handVisual;
@@ -61,12 +63,12 @@ public class GameManager : MonoBehaviour
     public void Init(LevelNumber levelNumber)
     {
         _level = levelNumber;
-        _signalsLeft = _signalsMax;
-        _rerollsLeft = _rerollsMax;
+        _signalsLeft = _signalsMax + _jokerManager.GetSignalsModificator();
+        _rerollsLeft = _rerollsMax + _jokerManager.GetRerollsModificator();
         _resourceVisual.Init();
         _scoreManager.ResetScore();
         _targetScoreVisual.Init(levelNumber);
-        _cardTransferManager.Hand.SetNewMaxSize(_handSize);
+        _cardTransferManager.Hand.SetNewMaxSize(_handSize + _jokerManager.GetHandModificator());
         _cardTransferManager.RefillHand();
         _targetScore = _configuration.GetValue(levelNumber);
         _playHandButton.interactable = true;
@@ -99,9 +101,12 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator CalculateScore()
     {
-        int score = (int) _scoreManager.CalculateAndAddScore(_table.SelectedCards.ToList(), 1f);
+        yield return _jokerManager.PlayJokerFinalAnimations();
+        int score = (int)(_scorePreview.TargetBase * _scorePreview.TargetMultiplier);
+        _scoreManager.CalculateAndAddScore(score);
+        
         yield return _flyingScore.Show(score);
-        _tablePreview.ClearPreview();
+        _scorePreview.ClearPreview();
         
         if (_scoreManager.CurrentScore >= _targetScore)
         {

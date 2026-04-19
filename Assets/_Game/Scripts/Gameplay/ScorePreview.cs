@@ -4,11 +4,11 @@ using UnityEngine;
 using Zenject;
 using Unity.Mathematics;
 
-public class TablePreview : MonoBehaviour
+public class ScorePreview : MonoBehaviour
 {
     [SerializeField] private float _maxMultiplier = 5f;
     [SerializeField] private float _maxBase = 5000;
-    
+
     [SerializeField] private TMP_Text _comboName;
     [SerializeField] private TMP_Text _base;
     [SerializeField] private TMP_Text _multiplier;
@@ -23,6 +23,10 @@ public class TablePreview : MonoBehaviour
     private float _targetMultiplier = 1f;
 
     private ICombinationsConfiguration _combinationsConfiguration;
+
+    public float TargetMultiplier => _targetMultiplier;
+
+    public int TargetBase => _targetBase;
 
     [Inject]
     public void Construct(ICombinationsConfiguration configuration)
@@ -41,18 +45,26 @@ public class TablePreview : MonoBehaviour
         _hand.SelectedCardsChanged -= OnSelectedCardsChanged;
     }
 
-    public void AddTargetValues(int targetBase, float targetMultiplier)
+    public void AddTargetValues(int targetBase, float targetMultiplier, bool isMultiplied = false)
     {
         if (targetBase != 0)
         {
-            _targetBase += targetBase;
+            _targetBase = TargetBase + targetBase;
             OnBaseChanged();
         }
 
         if (targetMultiplier != 0)
         {
-            _targetMultiplier += targetMultiplier;
-            OnMultiplierChanged();
+            if (isMultiplied == false)
+            {
+                _targetMultiplier = TargetMultiplier + targetMultiplier;
+                OnMultiplierChanged();
+            }
+            else
+            {
+                _targetMultiplier = TargetMultiplier * targetMultiplier;
+                OnMultiplierChanged();
+            }
         }
     }
 
@@ -101,14 +113,14 @@ public class TablePreview : MonoBehaviour
     {
         float remainingDuration = _duration;
 
-        while (_currentBase < _targetBase)
+        while (_currentBase < TargetBase)
         {
-            int goldToAdd = (int)((_targetBase - _currentBase) * Time.deltaTime / remainingDuration);
+            int goldToAdd = (int)((TargetBase - _currentBase) * Time.deltaTime / remainingDuration);
             _currentBase += goldToAdd;
             remainingDuration -= Time.deltaTime;
 
-            if (_currentBase > _targetBase)
-                _currentBase = _targetBase;
+            if (_currentBase > TargetBase)
+                _currentBase = TargetBase;
 
             _base.text = _currentBase.ToString();
             _base.fontSize = math.remap(0, _maxBase, 20, 35, _currentBase);
@@ -121,14 +133,14 @@ public class TablePreview : MonoBehaviour
     {
         float remainingDuration = _duration;
 
-        while (_currentMultiplier < _targetMultiplier)
+        while (_currentMultiplier < TargetMultiplier)
         {
-            float goldToAdd = ((_targetMultiplier - _currentMultiplier) * Time.deltaTime / remainingDuration);
+            float goldToAdd = ((TargetMultiplier - _currentMultiplier) * Time.deltaTime / remainingDuration);
             _currentMultiplier += goldToAdd;
             remainingDuration -= Time.deltaTime;
 
-            if (_currentMultiplier > _targetMultiplier)
-                _currentMultiplier = _targetMultiplier;
+            if (_currentMultiplier > TargetMultiplier)
+                _currentMultiplier = TargetMultiplier;
 
             _multiplier.text = _currentMultiplier.ToString("0.00");
             _multiplier.fontSize = math.remap(0, _maxMultiplier, 20, 35, _currentMultiplier);

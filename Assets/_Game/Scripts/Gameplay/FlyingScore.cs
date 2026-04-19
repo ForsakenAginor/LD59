@@ -20,6 +20,5 @@ public class FlyingScore : SwitchableElement
         color.a = 0;
         _text.DOColor(color, _duration).SetEase(Ease.InCirc);
         yield return transform.DOLocalMoveY(_targetPosition, _duration).WaitForCompletion();
-        
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Source.Scripts.DI.Services.Boot;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 public class TableAnimation : MonoBehaviour
@@ -12,9 +13,10 @@ public class TableAnimation : MonoBehaviour
     [SerializeField] private Vector3 _enlargeScale;
     [SerializeField] private Vector3 _smallScale;
 
+    [SerializeField] private JokerManager _jokerManager;
     [SerializeField] private HandVisual _hand;
-    [SerializeField] private TablePreview _preview;
-    [SerializeField] private FlyingText _flyingText;
+    [SerializeField] private ScorePreview _preview;
+    [FormerlySerializedAs("_flyingText")] [SerializeField] private FlyingCombination _flyingCombination;
 
     private ConfigurationProvider _configuration;
 
@@ -39,19 +41,52 @@ public class TableAnimation : MonoBehaviour
 
         yield return new WaitForSeconds(_scaleDuration);
 
-        foreach (var card in cards)
+        foreach (TableCardVisual card in cards)
         {
             if (combo.Contains(card.Card))
             {
-                yield return card.transform.DOShakePosition(0.5f, 15f).WaitForCompletion();
-                int score = _configuration.GetValue(card.Card.Frequency);
-                _preview.AddTargetValues(score, 0f);
-                yield return card.FlyingScore.Show(score);
+                yield return TriggerCard(card);
+
+                if (_jokerManager.CanBoostThatSuit(card.Card.Suit, out List<JokerCard> suitJokers))
+                {
+                    foreach (JokerCard joker in suitJokers)
+                    {
+                        yield return joker.transform.DOShakePosition(0.25f, 15f, 50).WaitForCompletion();
+                        yield return TriggerCard(card);
+                    }
+                }
+                
+                if (_jokerManager.CanBoostThatFrequency(card.Card.Frequency, out List<JokerCard> frequencyJokers))
+                {
+                    foreach (JokerCard joker in frequencyJokers)
+                    {
+                        yield return joker.transform.DOShakePosition(0.25f, 15f, 50).WaitForCompletion();
+                        yield return TriggerCard(card);
+                    }
+                }
             }
         }
 
         float multiplier = _configuration.GetValue(_hand.Combination.Type).Multiplier;
         _preview.AddTargetValues(0, multiplier);
-        yield return _flyingText.Show(_hand.Combination.Type);
+        yield return _flyingCombination.Show(_hand.Combination.Type);
+
+        if (_jokerManager.CanBoostThatCombination(_hand.Combination.Type, out List<JokerCard> jokers))
+        {
+            foreach (JokerCard joker in jokers)
+            {
+                yield return joker.transform.DOShakePosition(0.25f, 15f, 30).WaitForCompletion();
+                yield return joker.FlyingText.Show($"x2");
+                _preview.AddTargetValues(0, 2, true);
+            }
+        }
+    }
+
+    private IEnumerator TriggerCard(TableCardVisual card)
+    {
+        yield return card.transform.DOShakePosition(0.4f, 30f).WaitForCompletion();
+        int score = _configuration.GetValue(card.Card.Frequency);
+        _preview.AddTargetValues(score, 0f);
+        yield return card.FlyingScore.Show(score);
     }
 }

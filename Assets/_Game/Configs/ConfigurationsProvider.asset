@@ -15,3 +15,4 @@ MonoBehaviour:
   _cardValueConfiguration: {fileID: 11400000, guid: c2c68137c764ccc4abb9363c7dee5f55, type: 2}
   _levelDifficultyConfiguration: {fileID: 11400000, guid: 3a2cd18532e920149915282656e8cbbb, type: 2}
   _combinationsConfiguration: {fileID: 11400000, guid: 62188a495dfa2114793a2fdac359761e, type: 2}
+  _jokerConfiguration: {fileID: 11400000, guid: a469aaa68c1485d43aed964f472ca531, type: 2}
