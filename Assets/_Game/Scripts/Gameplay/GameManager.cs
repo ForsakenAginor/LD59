@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button _playHandButton;
     [SerializeField] private Button _discardHandButton;
 
+    [SerializeField] private BossManager _bossManager;
     [SerializeField] private NewRoundIntroduce _newRoundIntroduce;
     [SerializeField] private ScoreVisual _scoreVisual;
     [SerializeField] private JokerManager _jokerManager;
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     private Table _table;
     private int _targetScore;
     private ILevelDifficultyConfiguration _configuration;
-    private LevelNumber _level;
+    private LevelNumber _level = LevelNumber.First;
     private int _signalsLeft;
     private int _rerollsLeft;
 
@@ -65,13 +66,27 @@ public class GameManager : MonoBehaviour
     public void Init(LevelNumber levelNumber)
     {
         _level = levelNumber;
+
         _signalsLeft = _signalsMax + _jokerManager.GetSignalsModificator();
+        _signalsLeft = Mathf.Clamp(_signalsLeft, 1, int.MaxValue);
         _rerollsLeft = _rerollsMax + _jokerManager.GetRerollsModificator();
+        _rerollsLeft = Mathf.Clamp(_rerollsLeft, 0, int.MaxValue);
+        
+        if (_bossManager.IsBossActive)
+        {
+            _signalsLeft = _bossManager.IsOneSignal() ? 2 : _signalsLeft;
+            _rerollsLeft = _bossManager.IsNoRerolls() ? 0 : _rerollsLeft;
+        }
+        
         _resourceVisual.Init();
         _scoreManager.ResetScore();
         _scoreVisual.Reset();
         _targetScoreVisual.Init(levelNumber);
-        _cardTransferManager.Hand.SetNewMaxSize(_handSize + _jokerManager.GetHandModificator());
+        
+        int newHandSize = _handSize + _jokerManager.GetHandModificator();
+        newHandSize = _bossManager.IsBossActive ? newHandSize + _bossManager.GetHandModifacator() : newHandSize;
+        
+        _cardTransferManager.Hand.SetNewMaxSize(newHandSize);
         _cardTransferManager.RefillHand();
         _targetScore = _configuration.GetValue(levelNumber);
         _playHandButton.interactable = true;
@@ -113,13 +128,14 @@ public class GameManager : MonoBehaviour
         
         if (_scoreManager.CurrentScore >= _targetScore)
         {
-            if (_level == LevelNumber.Fifth)
+            if (_level == LevelNumber.Twelveth)
             {
                 PlayerWon?.Invoke();
             }
             else
             {
                 _level++;
+                _bossManager.SetLevel(_level);
                 _cardTransferManager.Hand.ClearHand();
                 _cardTransferManager.Deck.Fill();
                 yield return _jokerManager.SelectJokers();

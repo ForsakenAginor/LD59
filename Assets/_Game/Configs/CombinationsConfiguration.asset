@@ -52,7 +52,7 @@ MonoBehaviour:
       Data: 2|CombinationData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: Single
+      Data: ECHO
     - Name: Multiplier
       Entry: 4
       Data: 1
@@ -73,7 +73,7 @@ MonoBehaviour:
       Data: 3|CombinationData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: Pair
+      Data: DUPLEX
     - Name: Multiplier
       Entry: 4
       Data: 2
@@ -94,7 +94,7 @@ MonoBehaviour:
       Data: 4|CombinationData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: Two pairs
+      Data: DUAL DUPLEX
     - Name: Multiplier
       Entry: 4
       Data: 2.5
@@ -115,7 +115,7 @@ MonoBehaviour:
       Data: 5|CombinationData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: Set
+      Data: TRIPLET
     - Name: Multiplier
       Entry: 4
       Data: 4
@@ -136,7 +136,7 @@ MonoBehaviour:
       Data: 6|CombinationData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: Small Flush
+      Data: TRI HARMONY
     - Name: Multiplier
       Entry: 4
       Data: 3
@@ -157,7 +157,7 @@ MonoBehaviour:
       Data: 7|CombinationData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: Big Flush
+      Data: QUAD HARMONY
     - Name: Multiplier
       Entry: 4
       Data: 4.5
@@ -178,7 +178,7 @@ MonoBehaviour:
       Data: 8|CombinationData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: Full Flush
+      Data: PURE HARMONY
     - Name: Multiplier
       Entry: 4
       Data: 6
@@ -199,7 +199,7 @@ MonoBehaviour:
       Data: 9|CombinationData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: Straight
+      Data: SWEEP
     - Name: Multiplier
       Entry: 4
       Data: 8
@@ -220,7 +220,7 @@ MonoBehaviour:
       Data: 10|CombinationData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: Straight Flush
+      Data: PURE SWEEP
     - Name: Multiplier
       Entry: 4
       Data: 12
@@ -241,7 +241,7 @@ MonoBehaviour:
       Data: 11|CombinationData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: Full House
+      Data: TRIPLEX PAIR
     - Name: Multiplier
       Entry: 4
       Data: 6
@@ -262,7 +262,7 @@ MonoBehaviour:
       Data: 12|CombinationData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: Four
+      Data: QUAD
     - Name: Multiplier
       Entry: 4
       Data: 7
@@ -283,7 +283,7 @@ MonoBehaviour:
       Data: 13|CombinationData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: Royal Straight Flush
+      Data: ROYAL SWEEP
     - Name: Multiplier
       Entry: 4
       Data: 25

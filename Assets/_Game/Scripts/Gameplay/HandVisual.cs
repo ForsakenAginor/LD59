@@ -12,6 +12,7 @@ public class HandVisual : MonoBehaviour
     private readonly Dictionary<Card, CardVisual> _cards = new Dictionary<Card, CardVisual>();
     private readonly List<CardVisual> _selectedCards = new List<CardVisual>();
 
+    [SerializeField] private BossManager _bossManager;
     [SerializeField] private CardVisual _cardVisualPrefab;
     [SerializeField] private Transform _cardsInHandContainer;
     [SerializeField] private SimpleOverlapHand _layout;
@@ -68,6 +69,12 @@ public class HandVisual : MonoBehaviour
     {
         var cardVisual = _instantiateWrapper.Instantiate(_cardVisualPrefab, _cardsInHandContainer);
         cardVisual.Init(card);
+            
+        if(_bossManager.IsBossActive && (_bossManager.IsFrequencyBanned(card.Frequency) || _bossManager.IsSuitBanned(card.Suit)))
+        {
+            cardVisual.BlockCard();
+        }
+        
         _cards.Add(card, cardVisual);
         cardVisual.OnClick += OnCardClick;
         _isBlocked = false;

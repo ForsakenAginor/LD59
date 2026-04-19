@@ -1,4 +1,5 @@
 using System;
+using Assets.Source.Scripts.Utility;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -12,12 +13,16 @@ public class CardVisual : MonoBehaviour, IPointerClickHandler
     //[SerializeField] private TMP_Text _cardSuit;
     [SerializeField] private Image _image;
     [SerializeField] private float _movingDuration = 0.2f;
-
+    [SerializeField] private SwitchableElement _blockingImage;
+    
     private Card _card;
     private Tween _movingTween;
     private Tween _rotatingTween;
     private RectTransform _rectTransform;
     private ICardValueConfiguration _configuration;
+    private bool _isBlocked;
+
+    public bool IsBlocked => _isBlocked;
     
     public event Action<CardVisual> OnClick;
     
@@ -75,6 +80,12 @@ public class CardVisual : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         OnClick?.Invoke(this);
+    }
+
+    public void BlockCard()
+    {
+        _blockingImage.Enable();
+        _isBlocked = true;
     }
 
     public void Enlarge()

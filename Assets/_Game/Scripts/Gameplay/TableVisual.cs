@@ -13,7 +13,8 @@ public class TableVisual : MonoBehaviour
     [SerializeField] private TableCardVisual _cardVisualPrefab;
     [SerializeField] private RectTransform _cardsContainer;
     [SerializeField] private TableAnimation _tableAnimation;
-
+    [SerializeField] private BossManager _bossManager;
+    
     private IZenjectInstantiateWrapper _instantiateWrapper;
 
     [Header("Layout")]
@@ -64,6 +65,11 @@ public class TableVisual : MonoBehaviour
         {
             var cardVisual = _instantiateWrapper.Instantiate(_cardVisualPrefab, _cardsContainer);
             cardVisual.Init(collection[i]);
+            
+            if(_bossManager.IsBossActive && (_bossManager.IsFrequencyBanned(collection[i].Frequency) || _bossManager.IsSuitBanned(collection[i].Suit)))
+            {
+                cardVisual.BlockCard();
+            }
 
             // Выставляем позицию карты
             RectTransform rect = cardVisual.GetComponent<RectTransform>();

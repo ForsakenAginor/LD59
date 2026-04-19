@@ -43,7 +43,7 @@ public class TableAnimation : MonoBehaviour
 
         foreach (TableCardVisual card in cards)
         {
-            if (combo.Contains(card.Card))
+            if (combo.Contains(card.Card) && card.IsBlocked == false)
             {
                 yield return TriggerCard(card);
 

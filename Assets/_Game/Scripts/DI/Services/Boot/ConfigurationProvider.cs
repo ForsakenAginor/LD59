@@ -5,12 +5,13 @@ namespace Assets.Source.Scripts.DI.Services.Boot
 {
     [CreateAssetMenu(fileName = "ConfigurationsProvider", menuName = "Services/ConfigurationsProvider")]
     public class ConfigurationProvider : ScriptableObject, ICardValueConfiguration, ILevelDifficultyConfiguration, ICombinationsConfiguration,
-        IJokerConfiguration
+        IJokerConfiguration, IBossConfiguration
     {
         [SerializeField] private CardValueConfiguration _cardValueConfiguration;
         [SerializeField] private LevelDifficultyConfiguration _levelDifficultyConfiguration;
         [SerializeField] private CombinationsConfiguration _combinationsConfiguration;
         [SerializeField] private JokerConfiguration _jokerConfiguration;
+        [SerializeField] private BossConfiguration _bossConfiguration;
         
         public int GetValue(Frequency frequency)
         {
@@ -32,5 +33,10 @@ namespace Assets.Source.Scripts.DI.Services.Boot
         }
         
         public List<string> GetJokerNames() => _jokerConfiguration.GetJokerNames();
+        
+        public BossData GetBossData(BossType bossType)
+        {
+            return _bossConfiguration.GetBossData(bossType);
+        }
     }
 }
