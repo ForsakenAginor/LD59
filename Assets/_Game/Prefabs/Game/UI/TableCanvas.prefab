@@ -254,6 +254,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyingText
       objectReference: {fileID: 0}
+    - target: {fileID: 3048743377355524985, guid: 3fb1d630fc64d0c43892f829598e6f44, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4100432553416376814, guid: 3fb1d630fc64d0c43892f829598e6f44, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

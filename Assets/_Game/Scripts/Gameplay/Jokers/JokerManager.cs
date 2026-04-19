@@ -236,7 +236,7 @@ public class JokerManager : MonoBehaviour
             {
                 yield return jokerCard.transform.DOShakePosition(0.5f, 15f, 30).WaitForCompletion();
                 _preview.AddTargetValues(0, data.Multiplier, true);
-                yield return jokerCard.FlyingText.Show($"x{data.AddedMultiplier:0.00}");
+                yield return jokerCard.FlyingText.Show($"x{data.Multiplier:0.00}");
             }
         }
     }

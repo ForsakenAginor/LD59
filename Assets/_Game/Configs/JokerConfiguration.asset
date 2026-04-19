@@ -48,10 +48,10 @@ MonoBehaviour:
       Data: 2|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: AddBase
+      Data: AMPLIFIER
     - Name: Description
       Entry: 1
-      Data: test
+      Data: Adds +2000 MHz to any pattern.
     - Name: Icon
       Entry: 10
       Data: 0
@@ -130,10 +130,10 @@ MonoBehaviour:
       Data: 6|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: AddMultiplier
+      Data: RESONATOR
     - Name: Description
       Entry: 1
-      Data: test
+      Data: Add +5 to pattern multiplicator.
     - Name: Icon
       Entry: 10
       Data: 0
@@ -212,10 +212,10 @@ MonoBehaviour:
       Data: 10|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: AddBigBase
+      Data: AMPLIFIER++
     - Name: Description
       Entry: 1
-      Data: test
+      Data: Adds +5000 MHz to any pattern.
     - Name: Icon
       Entry: 10
       Data: 0
@@ -294,10 +294,10 @@ MonoBehaviour:
       Data: 14|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: AddBigMultiplier
+      Data: RESONATOR++
     - Name: Description
       Entry: 1
-      Data: test
+      Data: Add +10 to pattern multiplicator.
     - Name: Icon
       Entry: 10
       Data: 0
@@ -376,10 +376,10 @@ MonoBehaviour:
       Data: 18|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: Multiplier
+      Data: MODULATOR
     - Name: Description
       Entry: 1
-      Data: test
+      Data: Multiplies pattern score by x1,5.
     - Name: Icon
       Entry: 10
       Data: 0
@@ -458,10 +458,10 @@ MonoBehaviour:
       Data: 22|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: BigMultiplier
+      Data: MODULATOR++
     - Name: Description
       Entry: 1
-      Data: test
+      Data: Multiplies pattern score by x3.
     - Name: Icon
       Entry: 10
       Data: 0
@@ -540,10 +540,10 @@ MonoBehaviour:
       Data: 26|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: AddHand
+      Data: EXPANDER
     - Name: Description
       Entry: 1
-      Data: test
+      Data: Increases Buffer size by 2.
     - Name: Icon
       Entry: 10
       Data: 1
@@ -622,10 +622,10 @@ MonoBehaviour:
       Data: 30|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: AddReroll
+      Data: SCANNER
     - Name: Description
       Entry: 1
-      Data: test
+      Data: Increases Retune charges by 1.
     - Name: Icon
       Entry: 10
       Data: 0
@@ -704,10 +704,10 @@ MonoBehaviour:
       Data: 34|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: AddSignals
+      Data: REPEATER
     - Name: Description
       Entry: 1
-      Data: test
+      Data: Increases Transmissions by 1.
     - Name: Icon
       Entry: 10
       Data: 0
@@ -786,10 +786,10 @@ MonoBehaviour:
       Data: 38|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: AddHandDecreaseSignals
+      Data: MEMORY LEECH
     - Name: Description
       Entry: 1
-      Data: test
+      Data: Gain +3 Buffer, but lose 1 Transmissions.
     - Name: Icon
       Entry: 10
       Data: 0
@@ -868,10 +868,10 @@ MonoBehaviour:
       Data: 42|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: AddHandDecreaseRerolls
+      Data: RIGID ARRAY
     - Name: Description
       Entry: 1
-      Data: test
+      Data: Gain +3 Buffer, but lose 1 Retunes.
     - Name: Icon
       Entry: 10
       Data: 0
@@ -950,10 +950,10 @@ MonoBehaviour:
       Data: 46|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: AddSignalAddReroll
+      Data: "TWO\u2011WAY RELAY"
     - Name: Description
       Entry: 1
-      Data: test
+      Data: Gain +1 Retunes and +1 Transmissions.
     - Name: Icon
       Entry: 10
       Data: 1
@@ -1032,10 +1032,10 @@ MonoBehaviour:
       Data: 50|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: BoostSin
+      Data: SIN BOOSTER
     - Name: Description
       Entry: 1
-      Data: test
+      Data: Sin type signals trigger 2 times
     - Name: Icon
       Entry: 10
       Data: 0
@@ -1117,10 +1117,10 @@ MonoBehaviour:
       Data: 54|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: BoostDigital
+      Data: DIGITAL BOOSTER
     - Name: Description
       Entry: 1
-      Data: test
+      Data: Digital type signals trigger 2 times
     - Name: Icon
       Entry: 10
       Data: 0
@@ -1202,10 +1202,10 @@ MonoBehaviour:
       Data: 58|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: BoostSaw
+      Data: SAW BOOSTER
     - Name: Description
       Entry: 1
-      Data: test
+      Data: ' Saw type signals trigger 2 times'
     - Name: Icon
       Entry: 10
       Data: 0
@@ -1287,10 +1287,11 @@ MonoBehaviour:
       Data: 62|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: FrequencyBoostT1
+      Data: FREQ AMP T1
     - Name: Description
       Entry: 1
-      Data: test
+      Data: 'Signal at that frequencies trigger 2 times: 100MHz, 200MHz, 300MHz,
+        400MHz '
     - Name: Icon
       Entry: 10
       Data: 0
@@ -1382,10 +1383,10 @@ MonoBehaviour:
       Data: 66|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: FrequencyBoostT2
+      Data: FREQ AMP T2
     - Name: Description
       Entry: 1
-      Data: test
+      Data: 'Signal at that frequencies trigger 2 times: 500MHz, 600,MHz 700MHz'
     - Name: Icon
       Entry: 10
       Data: 1
@@ -1474,10 +1475,10 @@ MonoBehaviour:
       Data: 70|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: FrequencyBoostT3
+      Data: FREQ AMP T3
     - Name: Description
       Entry: 1
-      Data: test
+      Data: 'Signal at that frequencies trigger 2 times: 800MHz, 900MHz'
     - Name: Icon
       Entry: 10
       Data: 1
@@ -1563,10 +1564,10 @@ MonoBehaviour:
       Data: 74|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: FrequencyBoostT4
+      Data: FREQ AMP T4
     - Name: Description
       Entry: 1
-      Data: test
+      Data: 'Signal at that frequencies trigger 2 times: 1000MHz, 1200MHz'
     - Name: Icon
       Entry: 10
       Data: 1
@@ -1652,10 +1653,10 @@ MonoBehaviour:
       Data: 78|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: FrequencyBoostT5
+      Data: FREQ AMP T5
     - Name: Description
       Entry: 1
-      Data: test
+      Data: 'Signal at that frequencies trigger 2 times: 1500MHz'
     - Name: Icon
       Entry: 10
       Data: 1
@@ -1739,10 +1740,10 @@ MonoBehaviour:
       Data: 82|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: ComboPair
+      Data: DUPLEX RESONATOR
     - Name: Description
       Entry: 1
-      Data: test
+      Data: 'Multiply by x2 those patterns power: DUPLEX, DUAL DUPLEX'
     - Name: Icon
       Entry: 10
       Data: 1
@@ -1827,10 +1828,10 @@ MonoBehaviour:
       Data: 86|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: ComboSmallFlush
+      Data: TRI HARMONY RESONATOR
     - Name: Description
       Entry: 1
-      Data: test
+      Data: 'Multiply by x2 those patterns power: TRI HARMONY'
     - Name: Icon
       Entry: 10
       Data: 1
@@ -1912,10 +1913,10 @@ MonoBehaviour:
       Data: 90|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: ComboBigFlush
+      Data: QUAD HARMONY RESONATOR
     - Name: Description
       Entry: 1
-      Data: test
+      Data: 'Multiply by x2 those patterns power: QUAD HARMONY'
     - Name: Icon
       Entry: 10
       Data: 1
@@ -1997,10 +1998,10 @@ MonoBehaviour:
       Data: 94|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: ComboFullFlash
+      Data: PURE HARMONY RESONATOR
     - Name: Description
       Entry: 1
-      Data: test
+      Data: 'Multiply by x2 those patterns power: PURE HARMONY'
     - Name: Icon
       Entry: 10
       Data: 1
@@ -2082,10 +2083,11 @@ MonoBehaviour:
       Data: 98|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: ComboAllFlash
+      Data: UBER HARMONY RESONATOR
     - Name: Description
       Entry: 1
-      Data: test
+      Data: 'Multiply by x2 those patterns power: TRI HARMONY, QUAD HARMONY, PURE
+        HARMONY  '
     - Name: Icon
       Entry: 10
       Data: 0
@@ -2173,10 +2175,10 @@ MonoBehaviour:
       Data: 102|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: ComboFullHouse
+      Data: TRIPLEX PAIR RESONATOR
     - Name: Description
       Entry: 1
-      Data: test
+      Data: 'Multiply by x2 those patterns power: TRIPLEX PAIR'
     - Name: Icon
       Entry: 10
       Data: 1
@@ -2259,10 +2261,10 @@ MonoBehaviour:
       Data: 106|JokerData, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: ComboStraight
+      Data: SWEEP RESONATOR
     - Name: Description
       Entry: 1
-      Data: test
+      Data: 'Multiply by x2 those patterns power: SWEEP, PURE SWEEP, ROYAL SWEEP'
     - Name: Icon
       Entry: 10
       Data: 0
@@ -2318,13 +2320,16 @@ MonoBehaviour:
         Unity.Plastic.Antlr3.Runtime
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 3
       Data: 7
     - Name: 
       Entry: 3
       Data: 8
+    - Name: 
+      Entry: 3
+      Data: 11
     - Name: 
       Entry: 13
       Data: 
