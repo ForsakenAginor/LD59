@@ -28,6 +28,12 @@ public class ScoreVisual : MonoBehaviour
         _scoreManager.ScoreChanged -= OnScoreChanged;
     }
 
+    public void Reset()
+    {
+        _currentScore = 0;
+        _score.text = _currentScore.ToString();
+    }
+
     private void OnScoreChanged()
     {
         if (_coroutine != null)

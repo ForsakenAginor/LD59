@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Source.Scripts.DI.Services.Boot
 {
@@ -29,5 +30,7 @@ namespace Assets.Source.Scripts.DI.Services.Boot
         {
             return _jokerConfiguration.GetJokerData(jokerName);
         }
+        
+        public List<string> GetJokerNames() => _jokerConfiguration.GetJokerNames();
     }
 }

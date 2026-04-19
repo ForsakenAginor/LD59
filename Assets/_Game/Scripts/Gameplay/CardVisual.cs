@@ -79,7 +79,7 @@ public class CardVisual : MonoBehaviour, IPointerClickHandler
 
     public void Enlarge()
     {
-        transform.localScale = Vector3.one * 1.1f;
+        transform.localScale = Vector3.one * 1.2f;
     }
 
     public void Normalize()
@@ -89,8 +89,6 @@ public class CardVisual : MonoBehaviour, IPointerClickHandler
 
     public void SetTargetToMove(Vector2 targetPosition, Quaternion targetRotation, float delay)
     {
-        Debug.Log($"{targetPosition}, {targetRotation}");
-        
         if (_movingTween != null)
         {
             _movingTween.Kill();

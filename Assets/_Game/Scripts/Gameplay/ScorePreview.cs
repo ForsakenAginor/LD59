@@ -6,8 +6,8 @@ using Unity.Mathematics;
 
 public class ScorePreview : MonoBehaviour
 {
-    [SerializeField] private float _maxMultiplier = 5f;
-    [SerializeField] private float _maxBase = 5000;
+    [SerializeField] private float _maxMultiplier = 10f;
+    [SerializeField] private float _maxBase = 25000;
 
     [SerializeField] private TMP_Text _comboName;
     [SerializeField] private TMP_Text _base;
@@ -20,7 +20,7 @@ public class ScorePreview : MonoBehaviour
     private Coroutine _baseCoroutine;
     private Coroutine _multiplierCoroutine;
     private int _targetBase = 0;
-    private float _targetMultiplier = 1f;
+    private float _targetMultiplier = 0;
 
     private ICombinationsConfiguration _combinationsConfiguration;
 
@@ -73,6 +73,8 @@ public class ScorePreview : MonoBehaviour
         _comboName.text = "";
         _base.text = "0";
         _multiplier.text = "0";
+        _targetBase = 0;
+        _targetMultiplier = 0f;
         _currentBase = 0;
         _currentMultiplier = 0f;
         _base.fontSize = 20f;
@@ -122,8 +124,18 @@ public class ScorePreview : MonoBehaviour
             if (_currentBase > TargetBase)
                 _currentBase = TargetBase;
 
-            _base.text = _currentBase.ToString();
-            _base.fontSize = math.remap(0, _maxBase, 20, 35, _currentBase);
+            if (_currentBase < 10000)
+            {
+                _base.text = _currentBase.ToString();
+            }
+            else
+            {
+                _base.text = $"{(float)(_currentBase / 1000):0}K";
+            }
+
+            float fontSize = Mathf.Clamp(math.remap(0, _maxBase, 20, 45, _currentBase), 20, 45);
+            _base.fontSize = fontSize;
+            
 
             yield return null;
         }
@@ -142,8 +154,13 @@ public class ScorePreview : MonoBehaviour
             if (_currentMultiplier > TargetMultiplier)
                 _currentMultiplier = TargetMultiplier;
 
-            _multiplier.text = _currentMultiplier.ToString("0.00");
-            _multiplier.fontSize = math.remap(0, _maxMultiplier, 20, 35, _currentMultiplier);
+            if (_currentMultiplier < 10)
+                _multiplier.text = _currentMultiplier.ToString("0.00");
+            else
+                _multiplier.text = _currentMultiplier.ToString("0.0");
+
+            float fontSize = Mathf.Clamp(math.remap(0, _maxMultiplier, 20, 45, _currentMultiplier), 20, 45);
+            _multiplier.fontSize = fontSize;
 
             yield return null;
         }

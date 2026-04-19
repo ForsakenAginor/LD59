@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button _playHandButton;
     [SerializeField] private Button _discardHandButton;
 
+    [SerializeField] private ScoreVisual _scoreVisual;
     [SerializeField] private JokerManager _jokerManager;
     [FormerlySerializedAs("_tablePreview")] [SerializeField] private ScorePreview _scorePreview;
     [SerializeField] private FlyingScore _flyingScore;
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour
         _rerollsLeft = _rerollsMax + _jokerManager.GetRerollsModificator();
         _resourceVisual.Init();
         _scoreManager.ResetScore();
+        _scoreVisual.Reset();
         _targetScoreVisual.Init(levelNumber);
         _cardTransferManager.Hand.SetNewMaxSize(_handSize + _jokerManager.GetHandModificator());
         _cardTransferManager.RefillHand();
@@ -119,6 +121,7 @@ public class GameManager : MonoBehaviour
                 _level++;
                 _cardTransferManager.Hand.ClearHand();
                 _cardTransferManager.Deck.Fill();
+                yield return _jokerManager.SelectJokers();
                 Init(_level);
             }
         }
