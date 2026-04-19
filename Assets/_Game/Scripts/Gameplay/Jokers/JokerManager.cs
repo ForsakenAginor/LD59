@@ -56,7 +56,7 @@ public class JokerManager : MonoBehaviour
     {
         _isJokerSelected = false;
         List<string> jokersNames = new List<string>();
-        
+
         for (int i = 0; i < _jokerSelectionCards.Length; i++)
         {
             string randomJokerName = _jokersNames[Random.Range(0, _jokersNames.Count)];
@@ -65,7 +65,7 @@ public class JokerManager : MonoBehaviour
             {
                 randomJokerName = _jokersNames[Random.Range(0, _jokersNames.Count)];
             }
-            
+
             jokersNames.Add(randomJokerName);
             _jokerSelectionCards[i].Init(randomJokerName);
             _jokerSelectionCards[i].SetInteractable(false);
@@ -90,20 +90,25 @@ public class JokerManager : MonoBehaviour
 
         yield return new WaitWhile(() => _isJokerSelected == false);
         _isJokerSelected = false;
-        
+
         for (int i = 0; i < _jokerSelectionCards.Length; i++)
         {
             _jokerSelectionCards[i].SetInteractable(false);
         }
 
+        Transform selected = null;
+
         for (int i = 0; i < _jokerSelectionCards.Length; i++)
         {
             if (_jokerSelectionCards[i].IsSelected == false)
-                _jokerSelectionCards[i].transform.DOScale(Vector3.zero, _animationDuration).WaitForCompletion();
+                _jokerSelectionCards[i].transform.DOScale(Vector3.zero, _animationDuration);
             else
-                yield return _jokerSelectionCards[i].transform.DOScale(Vector3.zero, _animationDuration).SetDelay(_animationDuration).WaitForCompletion();
+                selected = _jokerSelectionCards[i].transform;
         }
-        
+
+        yield return selected.DOScale(Vector3.zero, _animationDuration).SetDelay(_animationDuration)
+            .WaitForCompletion();
+
         _jokerSelectionPanel.Disable();
     }
 
