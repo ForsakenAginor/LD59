@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button _playHandButton;
     [SerializeField] private Button _discardHandButton;
 
+    [SerializeField] private NewRoundIntroduce _newRoundIntroduce;
     [SerializeField] private ScoreVisual _scoreVisual;
     [SerializeField] private JokerManager _jokerManager;
     [FormerlySerializedAs("_tablePreview")] [SerializeField] private ScorePreview _scorePreview;
@@ -122,6 +123,7 @@ public class GameManager : MonoBehaviour
                 _cardTransferManager.Hand.ClearHand();
                 _cardTransferManager.Deck.Fill();
                 yield return _jokerManager.SelectJokers();
+                yield return _newRoundIntroduce.SetNewThreshold(_level);
                 Init(_level);
             }
         }
