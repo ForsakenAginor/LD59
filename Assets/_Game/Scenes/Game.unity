@@ -2832,22 +2832,22 @@ MonoBehaviour:
   - {fileID: 748377568}
   - {fileID: 168844900}
   - {fileID: 113965540}
-  _saw: {fileID: 8300000, guid: ba233c9bea8992d46a0ee94ae6b4ca0d, type: 3}
-  _sin: {fileID: 8300000, guid: 89b59f8d04de9b64d99a774dca893e28, type: 3}
-  _digital: {fileID: 8300000, guid: 00642a936c7c37d468af8f3a1aa831d5, type: 3}
-  _joker: {fileID: 8300000, guid: 85bacda64d760f643bed9d632b1c0639, type: 3}
-  _cardSelection: {fileID: 8300000, guid: 126a2c72d497ea542908c995d35ff957, type: 3}
-  _cardHighlight: {fileID: 8300000, guid: a9da7f1648d10664193e1b4778e6bf92, type: 3}
-  _jokerSelectionAppear: {fileID: 8300000, guid: 482eab5be20b1cb4ba9b62fd743684c2, type: 3}
-  _winRound: {fileID: 8300000, guid: eb8c0572e7cf7af499b8c1e8b29f1bc0, type: 3}
-  _loseRound: {fileID: 8300000, guid: 1611022c777661f4ebfe646dcef3572d, type: 3}
-  _winGame: {fileID: 8300000, guid: eb8c0572e7cf7af499b8c1e8b29f1bc0, type: 3}
-  _interferenceAlert: {fileID: 8300000, guid: d315baf0d378aa748a606a25f860d88d, type: 3}
-  _newRoundPrepare: {fileID: 8300000, guid: b87edbee9d71a224ebb8a455b49f10e0, type: 3}
-  _monitorEnable: {fileID: 8300000, guid: 0f5b5f82d47a21843a526ddd64e6cc21, type: 3}
+  _saw: {fileID: 8300000, guid: d1c656c8b39d11b49ba7041892885b15, type: 3}
+  _sin: {fileID: 8300000, guid: 76f8ebb07ebf3e145b3be3090f539286, type: 3}
+  _digital: {fileID: 8300000, guid: 8fb8c9f375f8f9f49bcfa815cc9b6207, type: 3}
+  _joker: {fileID: 8300000, guid: 10ec10af442e7d341927c95cab3c03de, type: 3}
+  _cardSelection: {fileID: 8300000, guid: bfa51e7cd25dfb045ad61281790e9cf0, type: 3}
+  _cardHighlight: {fileID: 8300000, guid: 867cc85339e8cc241928fba74ca5d5ec, type: 3}
+  _jokerSelectionAppear: {fileID: 8300000, guid: 059b48ada241d9d4d9f4b513032b334b, type: 3}
+  _winRound: {fileID: 8300000, guid: d8cff490284047249bc800c8e7a164bf, type: 3}
+  _loseRound: {fileID: 8300000, guid: 3789c03b327081f43a3b908222fd3bfb, type: 3}
+  _winGame: {fileID: 8300000, guid: 08789925c2fbefb4b92b1b3d3adffb3d, type: 3}
+  _interferenceAlert: {fileID: 8300000, guid: 0c06abc6ba3e09c42ac02ba2a923d905, type: 3}
+  _newRoundPrepare: {fileID: 8300000, guid: c2157797a143d6946baa1e70b856e34d, type: 3}
+  _monitorEnable: {fileID: 8300000, guid: 8b19f9e9c5ecef4448419d4dd516468b, type: 3}
   _cardFlying: {fileID: 8300000, guid: 482eab5be20b1cb4ba9b62fd743684c2, type: 3}
-  _patternSound: {fileID: 8300000, guid: 2cb7f9f9a2557b54ea907951625b8638, type: 3}
-  _mechanicButton: {fileID: 8300000, guid: c5008fac23e18d54690cdeda91f4397f, type: 3}
+  _patternSound: {fileID: 8300000, guid: 82e45768ac28f5b42bf60420ec9f6bff, type: 3}
+  _mechanicButton: {fileID: 8300000, guid: c478a0bac7b8fdb4eaf8ad28fbe62d58, type: 3}
 --- !u!114 &424634622
 MonoBehaviour:
   m_ObjectHideFlags: 0

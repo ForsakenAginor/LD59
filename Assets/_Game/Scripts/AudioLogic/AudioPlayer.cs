@@ -88,17 +88,17 @@ namespace Assets.Source.Scripts.AudioLogic
 
         public void PlaySaw()
         {
-            PlaySound(_saw, 0.8f, true);
+            PlaySound(_saw, 1, true);
         }
 
         public void PlaySin()
         {
-            PlaySound(_sin, 0.8f, true);
+            PlaySound(_sin, 1, true);
         }
 
         public void PlayDigital()
         {
-            PlaySound(_digital, 0.8f, true);
+            PlaySound(_digital, 1f, true);
         }
 
         public void PlayJoker()
