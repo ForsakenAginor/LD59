@@ -1,9 +1,12 @@
+using System;
+using System.Collections;
 using Assets.Source.Scripts.AudioLogic;
 using Assets.Source.Scripts.DI.Services.Boot;
 using Assets.Source.Scripts.DI.Services.Game;
 using Assets.Source.Scripts.General;
 using Assets.Source.Scripts.SaveSystem;
 using System.Collections.Generic;
+using Assets.Source.Scripts.Utility;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -13,10 +16,14 @@ namespace Assets.Source.Scripts.EntryPoint
     public class Root : MonoBehaviour
     {
         [SerializeField] private GameManager _gameManager;
+        [SerializeField] private Button _playButton;
+        [SerializeField] private Button _closeMenuButton;
+        [SerializeField] private Button _restartButton;
+        [SerializeField] private Button _settingsButton;
+        [SerializeField] private SwitchableElement _settings;
         
         [Header("Other")]
         [SerializeField] private AudioSaveLoadService _soundInitializer;
-        [SerializeField] private Button _closeButton;
         private ISceneChanger _sceneChanger;
         private SaveDataProvider _saveDataProvider;
         private List<IDataSaveLoadService> _saveLoadServices = new();
@@ -34,29 +41,55 @@ namespace Assets.Source.Scripts.EntryPoint
             _healthVignette.Enable();
             _noiceVignette.Enable();
             _saveLoadServices.Add(_soundInitializer);
+            LoadData();
         }
 
-        private void Start()
+        private void Awake()
         {
-            _gameManager.Init(LevelNumber.First);
+            _playButton.onClick.AddListener(StartPlay);
+            _closeMenuButton.onClick.AddListener(SaveData);
+            _restartButton.onClick.AddListener(Restart);
+            _settingsButton.onClick.AddListener(OpenSettings);
+            
+            Time.timeScale = 0f;
+        }
+
+        private IEnumerator Start()
+        {
             _gameManager.PlayerWon += OnPlayerWon;
             _gameManager.PlayerLose += OnPlayerLose;
-            
-            LoadData();
-            
-            _closeButton.onClick.AddListener(OnCloseButtonClick);
             _sceneChanger.FadeOut();
+            yield return null;
             Time.timeScale = 1f;
-            
         }
 
         private void OnDestroy()
         {
+            _playButton.onClick.RemoveListener(StartPlay);
+            _closeMenuButton.onClick.RemoveListener(SaveData);
+            _restartButton.onClick.RemoveListener(Restart);
+            _settingsButton.onClick.RemoveListener(OpenSettings);
+            
             _healthVignette.Disable();
             _noiceVignette.Disable();
-            _closeButton.onClick.RemoveListener(OnCloseButtonClick);
             _gameManager.PlayerWon -= OnPlayerWon;
             _gameManager.PlayerLose -= OnPlayerLose;
+        }
+
+        private void OpenSettings()
+        {
+            _settings.Enable();
+        }
+
+        private void Restart()
+        {
+            _restartButton.interactable = false;
+            _sceneChanger.LoadScene(Scenes.Game.ToString());
+        }
+
+        private void StartPlay()
+        {
+            _gameManager.Init(LevelNumber.First);
         }
 
         private void OnPlayerLose()
@@ -90,12 +123,6 @@ namespace Assets.Source.Scripts.EntryPoint
             {
                 service.Load();
             }
-        }
-
-        private void OnCloseButtonClick()
-        {
-            SaveData();
-            _sceneChanger.LoadScene(Scenes.Menu.ToString());
         }
     }
 }
