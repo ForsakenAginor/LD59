@@ -14,12 +14,6 @@ namespace Assets.Source.Scripts.DI.Installers
         [SerializeField] private MusicPlayer _musicPlayerPrefab;
         [SerializeField] private AudioPlayer _audioPlayerPrefab;
 
-        [Header("Vignettes")]
-        [SerializeField] private ScriptableRendererFeature _healthVignetteEffect;
-        [SerializeField] private Material _healthVignetteMaterial;
-        [SerializeField] private ScriptableRendererFeature _noiceVignetteEffect;
-        [SerializeField] private Material _noiceVignetteMaterial;
-
         private ZenjectInstantiateWrapper _instantiateWrapper;
 
         public override void InstallBindings()
@@ -29,8 +23,6 @@ namespace Assets.Source.Scripts.DI.Installers
             BindCoroutineRunner();
             BindAudio();
             BindTimeIncrement();
-            BindHealthVignetteEffect();
-            BindNoiceVignetteEffect();
             BindModelScripts();
         }
 
@@ -43,42 +35,6 @@ namespace Assets.Source.Scripts.DI.Installers
 
             Container.Bind<ScoreManager>().To<ScoreManager>().FromInstance(scoreManager).AsSingle().NonLazy();
             Container.Bind<CardTransferManager>().To<CardTransferManager>().FromInstance(cardTransferManager).AsSingle().NonLazy();
-        }
-
-        private void BindNoiceVignetteEffect()
-        {
-            NoiceVignetteEffect effect = new NoiceVignetteEffect(_noiceVignetteEffect, _noiceVignetteMaterial);
-
-            Container
-                .Bind<NoiceVignetteEffect>()
-                .To<NoiceVignetteEffect>()
-                .FromInstance(effect)
-                .AsSingle()
-                .NonLazy();
-
-            Container
-                .Bind<INoiceVignetteEffect>()
-                .To<NoiceVignetteEffect>()
-                .FromInstance(effect)
-                .AsCached();
-        }
-
-        private void BindHealthVignetteEffect()
-        {
-            HealthVignetteEffect effect = new HealthVignetteEffect(_healthVignetteEffect, _healthVignetteMaterial);
-
-            Container
-                .Bind<HealthVignetteEffect>()
-                .To<HealthVignetteEffect>()
-                .FromInstance(effect)
-                .AsSingle()
-                .NonLazy();
-
-            Container
-                .Bind<IHealthDamageEffect>()
-                .To<HealthVignetteEffect>()
-                .FromInstance(effect)
-                .AsCached();
         }
 
         private void BindPoolFactory()

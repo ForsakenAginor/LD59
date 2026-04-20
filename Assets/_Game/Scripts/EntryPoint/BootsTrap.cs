@@ -20,7 +20,7 @@ namespace Assets.Source.Scripts.EntryPoint
 
             LocalizationInitializer localizationInitializer = new();
             localizationInitializer.ApplyLocalization(language);
-            SceneManager.LoadScene(Scenes.Menu.ToString());
+            SceneManager.LoadScene(Scenes.Game.ToString());
         }
     }
 }
