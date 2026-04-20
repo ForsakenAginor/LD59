@@ -1,4 +1,5 @@
 using System;
+using Assets.Source.Scripts.AudioLogic;
 using Assets.Source.Scripts.Utility;
 using DG.Tweening;
 using TMPro;
@@ -94,10 +95,12 @@ public class CardVisual : MonoBehaviour, IPointerClickHandler
     {
         transform.localScale = Vector3.one * 1.2f;
         _selectionBorder.enabled = true;
+        AudioPlayer.Instance.PlayCardSelection();
     }
 
     public void Normalize()
     {
+        AudioPlayer.Instance.PlayCardSelection();
         transform.localScale = Vector3.one;
         _selectionBorder.enabled = false;
     }

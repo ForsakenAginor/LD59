@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Source.Scripts.AudioLogic;
 using Assets.Source.Scripts.DI.Services.Global;
 using Assets.Source.Scripts.Utility;
 using DG.Tweening;
@@ -260,6 +261,7 @@ public class JokerManager : MonoBehaviour
 
             if (data.AddedBase != 0)
             {
+                AudioPlayer.Instance.PlayJoker();
                 yield return jokerCard.transform.DOShakePosition(0.5f, 15f, 30).WaitForCompletion();
                 _preview.AddTargetValues(data.AddedBase, 0f);
                 yield return jokerCard.FlyingScore.Show(data.AddedBase);
@@ -267,6 +269,7 @@ public class JokerManager : MonoBehaviour
 
             if (data.AddedMultiplier != 0)
             {
+                AudioPlayer.Instance.PlayJoker();
                 yield return jokerCard.transform.DOShakePosition(0.5f, 15f, 30).WaitForCompletion();
                 _preview.AddTargetValues(0, data.AddedMultiplier);
                 yield return jokerCard.FlyingText.Show($"+{data.AddedMultiplier:0.00}");
@@ -274,6 +277,7 @@ public class JokerManager : MonoBehaviour
 
             if (Mathf.Approximately(data.Multiplier, 1) == false)
             {
+                AudioPlayer.Instance.PlayJoker();
                 yield return jokerCard.transform.DOShakePosition(0.5f, 15f, 30).WaitForCompletion();
                 _preview.AddTargetValues(0, data.Multiplier, true);
                 yield return jokerCard.FlyingText.Show($"x{data.Multiplier:0.00}");

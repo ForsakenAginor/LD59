@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Source.Scripts.AudioLogic;
 using Assets.Source.Scripts.DI.Services.Boot;
 using DG.Tweening;
 using UnityEngine;
@@ -51,6 +52,7 @@ public class TableAnimation : MonoBehaviour
                 {
                     foreach (JokerCard joker in suitJokers)
                     {
+                        AudioPlayer.Instance.PlayJoker();
                         yield return joker.transform.DOShakePosition(0.25f, 15f, 50).WaitForCompletion();
                         yield return TriggerCard(card);
                     }
@@ -60,6 +62,7 @@ public class TableAnimation : MonoBehaviour
                 {
                     foreach (JokerCard joker in frequencyJokers)
                     {
+                        AudioPlayer.Instance.PlayJoker();
                         yield return joker.transform.DOShakePosition(0.25f, 15f, 50).WaitForCompletion();
                         yield return TriggerCard(card);
                     }
@@ -75,6 +78,7 @@ public class TableAnimation : MonoBehaviour
         {
             foreach (JokerCard joker in jokers)
             {
+                AudioPlayer.Instance.PlayJoker();
                 yield return joker.transform.DOShakePosition(0.25f, 15f, 30).WaitForCompletion();
                 yield return joker.FlyingText.Show($"x2");
                 _preview.AddTargetValues(0, 2, true);
@@ -84,6 +88,21 @@ public class TableAnimation : MonoBehaviour
 
     private IEnumerator TriggerCard(TableCardVisual card)
     {
+        switch (card.Card.Suit)
+        {
+            case Suit.Digital:
+                AudioPlayer.Instance.PlayDigital();
+                break;
+            case Suit.Saw:
+                AudioPlayer.Instance.PlaySaw();
+                break;
+            case Suit.Sine:
+                AudioPlayer.Instance.PlaySin();
+                break;
+            default:
+                break;
+        }
+        
         yield return card.transform.DOShakePosition(0.4f, 30f).WaitForCompletion();
         int score = _configuration.GetValue(card.Card.Frequency);
         _preview.AddTargetValues(score, 0f);
