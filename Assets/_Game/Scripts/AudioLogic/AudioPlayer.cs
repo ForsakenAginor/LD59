@@ -13,7 +13,8 @@ namespace Assets.Source.Scripts.AudioLogic
         [Header("Queue logic")]
         private readonly int _maxSimultaneousSounds = 10;
         private readonly Queue<AudioSource> _audioSources = new Queue<AudioSource>();
-        private readonly Dictionary<AudioSource, WaitWhileCached> _cachedWaitWhiles = new Dictionary<AudioSource, WaitWhileCached>();
+        private readonly Dictionary<AudioSource, WaitWhileCached> _cachedWaitWhiles =
+            new Dictionary<AudioSource, WaitWhileCached>();
         [SerializeField] private AudioSource[] _audioSourcesArray;
 
         [Header("Audio clips")]
@@ -22,7 +23,7 @@ namespace Assets.Source.Scripts.AudioLogic
         [SerializeField] private AudioClip _digital;
         [SerializeField] private AudioClip _joker;
         [SerializeField] private AudioClip _cardSelection;
-        
+
         [SerializeField] private AudioClip _cardHighlight;
         [SerializeField] private AudioClip _jokerSelectionAppear;
         [SerializeField] private AudioClip _winRound;
@@ -33,6 +34,8 @@ namespace Assets.Source.Scripts.AudioLogic
         [SerializeField] private AudioClip _monitorEnable;
         [SerializeField] private AudioClip _cardFlying;
         [SerializeField] private AudioClip _patternSound;
+
+        [SerializeField] private AudioClip _mechanicButton;
 
         public static AudioPlayer Instance
         {
@@ -78,6 +81,11 @@ namespace Assets.Source.Scripts.AudioLogic
                 _instance = null;
         }
 
+        public void PlayMechanicButton()
+        {
+            PlaySound(_mechanicButton);
+        }
+
         public void PlaySaw()
         {
             PlaySound(_saw, 0.8f, true);
@@ -102,7 +110,7 @@ namespace Assets.Source.Scripts.AudioLogic
         {
             PlaySound(_cardSelection, 0.5f, true);
         }
-        
+
         public void PlayCardHighlight()
         {
             PlaySound(_cardHighlight, 0.5f, true);
@@ -152,7 +160,7 @@ namespace Assets.Source.Scripts.AudioLogic
         {
             PlaySound(_patternSound);
         }
-        
+
         private void PlaySound(AudioClip clip, float volumeMultiplier = 1f, bool isRandomPitch = false)
         {
             if (volumeMultiplier > 1f)
