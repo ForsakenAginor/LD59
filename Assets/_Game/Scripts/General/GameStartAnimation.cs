@@ -12,15 +12,15 @@ public class GameStartAnimation : MonoBehaviour
     [SerializeField] private Image _startButtonImage;
     [SerializeField] private Color _targetColor;
     [SerializeField] private Button _startButton;
-    
+
     [SerializeField] private Button[] _otherButtons;
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private SwitchableElement _tooltip;
-    
+
     private Tween _tween;
     private Color _originalColor;
     private Coroutine _coroutine;
-    
+
     private void Awake()
     {
         _startButton.onClick.AddListener(PlayAnimation);
@@ -36,7 +36,6 @@ public class GameStartAnimation : MonoBehaviour
     private void OnDestroy()
     {
         _startButton.onClick.RemoveListener(PlayAnimation);
-        
     }
 
     private IEnumerator ShowTooltip()
@@ -52,15 +51,13 @@ public class GameStartAnimation : MonoBehaviour
         StopCoroutine(_coroutine);
         _tooltip.Disable();
         _startButtonImage.color = _originalColor;
+        _tutorial.Enable();
         _canvasGroup.DOFade(0f, 2f).SetEase(Ease.Linear).OnComplete(() =>
         {
-            _tutorial.Enable();
-
             foreach (Button button in _otherButtons)
             {
                 button.interactable = true;
             }
         });
-
     }
 }

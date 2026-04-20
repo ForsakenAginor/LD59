@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour
                 _bossManager.SetLevel(_level);
                 _cardTransferManager.Hand.ClearHand();
                 _cardTransferManager.Deck.Fill();
-                yield return _jokerManager.SelectJokers();
+                yield return _jokerManager.SelectJokers(_level);
                 yield return _newRoundIntroduce.SetNewThreshold(_level);
                 Init(_level);
             }

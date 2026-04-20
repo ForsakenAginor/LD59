@@ -12,6 +12,19 @@ using Random = UnityEngine.Random;
 
 public class JokerManager : MonoBehaviour
 {
+    private readonly List<string> _goodJokersNames = new()
+    {
+        "AddBigMultiplier",
+        "AddBigBase",
+        "BigMultiplier",
+        "ComboAllFlash",
+        "ComboStraight",
+        "AddHand",
+        "BoostSin",
+        "BoostSaw",
+        "BoostDigital",
+    };
+    
     private readonly List<JokerCard> _jokers = new();
     private List<string> _jokersNames = new List<string>();
 
@@ -27,6 +40,7 @@ public class JokerManager : MonoBehaviour
     [SerializeField] private float _animationDuration = 0.3f;
     [SerializeField] private SwitchableElement _jokerSelectionPanel;
 
+    private LevelNumber  _level = LevelNumber.First;
     private IJokerConfiguration _configuration;
     private IZenjectInstantiateWrapper _instantiateWrapper;
     private bool _isJokerSelected;
@@ -52,23 +66,43 @@ public class JokerManager : MonoBehaviour
         }
     }
 
-    public IEnumerator SelectJokers()
+    public IEnumerator SelectJokers(LevelNumber levelNumber)
     {
         _isJokerSelected = false;
         List<string> jokersNames = new List<string>();
 
-        for (int i = 0; i < _jokerSelectionCards.Length; i++)
+        if ((int)_level % 3 == 0)
         {
-            string randomJokerName = _jokersNames[Random.Range(0, _jokersNames.Count)];
-
-            while (jokersNames.Contains(randomJokerName))
+            //BOSS LEVEL
+            for (int i = 0; i < _jokerSelectionCards.Length; i++)
             {
-                randomJokerName = _jokersNames[Random.Range(0, _jokersNames.Count)];
-            }
+                string randomJokerName = _goodJokersNames[Random.Range(0, _goodJokersNames.Count)];
 
-            jokersNames.Add(randomJokerName);
-            _jokerSelectionCards[i].Init(randomJokerName);
-            _jokerSelectionCards[i].SetInteractable(false);
+                while (jokersNames.Contains(randomJokerName))
+                {
+                    randomJokerName = _goodJokersNames[Random.Range(0, _goodJokersNames.Count)];
+                }
+
+                jokersNames.Add(randomJokerName);
+                _jokerSelectionCards[i].Init(randomJokerName);
+                _jokerSelectionCards[i].SetInteractable(false);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < _jokerSelectionCards.Length; i++)
+            {
+                string randomJokerName = _jokersNames[Random.Range(0, _jokersNames.Count)];
+
+                while (jokersNames.Contains(randomJokerName))
+                {
+                    randomJokerName = _jokersNames[Random.Range(0, _jokersNames.Count)];
+                }
+
+                jokersNames.Add(randomJokerName);
+                _jokerSelectionCards[i].Init(randomJokerName);
+                _jokerSelectionCards[i].SetInteractable(false);
+            }
         }
 
         _levelBypassText.transform.localScale = Vector3.one * 20f;
@@ -110,6 +144,7 @@ public class JokerManager : MonoBehaviour
             .WaitForCompletion();
 
         _jokerSelectionPanel.Disable();
+        _level = levelNumber;
     }
 
     [Button]
