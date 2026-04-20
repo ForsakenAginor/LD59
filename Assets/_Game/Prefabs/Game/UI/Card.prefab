@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c30ff887e40496dbc65f2edad2eccd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardVisual
+  _selectionBorder: {fileID: 3833929185174254919}
   _image: {fileID: 4323335881402600943}
   _movingDuration: 0.2
   _blockingImage: {fileID: 2328421026702827383}

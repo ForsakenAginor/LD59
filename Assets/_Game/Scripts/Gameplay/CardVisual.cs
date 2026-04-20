@@ -11,6 +11,8 @@ public class CardVisual : MonoBehaviour, IPointerClickHandler
 {
     //[SerializeField] private TMP_Text _cardFrequency;
     //[SerializeField] private TMP_Text _cardSuit;
+    [SerializeField] private Image _selectionBorder;
+    
     [SerializeField] private Image _image;
     [SerializeField] private float _movingDuration = 0.2f;
     [SerializeField] private SwitchableElement _blockingImage;
@@ -91,11 +93,13 @@ public class CardVisual : MonoBehaviour, IPointerClickHandler
     public void Enlarge()
     {
         transform.localScale = Vector3.one * 1.2f;
+        _selectionBorder.enabled = true;
     }
 
     public void Normalize()
     {
         transform.localScale = Vector3.one;
+        _selectionBorder.enabled = false;
     }
 
     public void SetTargetToMove(Vector2 targetPosition, Quaternion targetRotation, float delay)

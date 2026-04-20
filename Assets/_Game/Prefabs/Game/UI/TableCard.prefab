@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8af62b8c4d04c249cbcaf79688c86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TableCardVisual
+  _selectionBorder: {fileID: 3833929185174254919}
   _image: {fileID: 4323335881402600943}
   _movingDuration: 0.2
   _blockingImage: {fileID: 2375375548584157526}
