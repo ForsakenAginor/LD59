@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.64280593, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -121,10 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8af62b8c4d04c249cbcaf79688c86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TableCardVisual
-  _image: {fileID: 3833929185174254919}
+  _image: {fileID: 4323335881402600943}
   _movingDuration: 0.2
   _blockingImage: {fileID: 2375375548584157526}
-  IsBlocked: 0
   _flyingScore: {fileID: 6729947996327044296}
 --- !u!1 &5415377286436741503
 GameObject:

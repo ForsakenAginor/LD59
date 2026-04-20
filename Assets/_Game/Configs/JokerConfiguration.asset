@@ -16,8 +16,33 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 21300000, guid: 976a778078cf0654da7db3327943e06d, type: 3}
-    - {fileID: 21300000, guid: d40be5542adf1ec48bf0299d7c635853, type: 3}
+    - {fileID: 21300000, guid: 64d93f79e065f424cb54e93c1540d6ee, type: 3}
+    - {fileID: 21300000, guid: ffcdcacb395df8143b09adcee710159a, type: 3}
+    - {fileID: 21300000, guid: e9a085f2a63ac7e49b7ac47a0d52fbaf, type: 3}
+    - {fileID: 21300000, guid: fac3c6bba12db3646a6fca98b6ea6c5c, type: 3}
+    - {fileID: 21300000, guid: 7506e2b0467aa204b8902c79c61f0862, type: 3}
+    - {fileID: 21300000, guid: 3f66e1a9ae116554ea3898a8bb4f52af, type: 3}
+    - {fileID: 21300000, guid: cd6d354617105f1458f133d60273c351, type: 3}
+    - {fileID: 21300000, guid: 90d755ae3058e924284959b704f50313, type: 3}
+    - {fileID: 21300000, guid: d56c2ab2883c4b440a7833a905ba67ca, type: 3}
+    - {fileID: 21300000, guid: 81e171ba71d534642a7b642366b32a97, type: 3}
+    - {fileID: 21300000, guid: afc7e35eb9546b844abf39bb4d7c5cfa, type: 3}
+    - {fileID: 21300000, guid: 1ecf5215e4283cd4aa4cf65b1b757103, type: 3}
+    - {fileID: 21300000, guid: e79d61fb43049b74c980f2aef7ebabd5, type: 3}
+    - {fileID: 21300000, guid: 8a8c5b946a19a674b807bab2a020078b, type: 3}
+    - {fileID: 21300000, guid: e42c4b6eaf5c0a34abec03d5675ea13a, type: 3}
+    - {fileID: 21300000, guid: 4a78b3f380b872b4d9fcb6f7be6ee511, type: 3}
+    - {fileID: 21300000, guid: 0809a7149800a9145a2de2bd90a7b645, type: 3}
+    - {fileID: 21300000, guid: 879fabbff890852469f64d4db42cae2e, type: 3}
+    - {fileID: 21300000, guid: 41a29d4f8baa81a4eb166be845830836, type: 3}
+    - {fileID: 21300000, guid: 5014e826424d9294095a795e2a2a3168, type: 3}
+    - {fileID: 21300000, guid: b42367c615ab77d478978299ade30159, type: 3}
+    - {fileID: 21300000, guid: 83a6b68d9223a8845ba46eb297e09c96, type: 3}
+    - {fileID: 21300000, guid: 9f0280380c812154e9be967e6277a1c5, type: 3}
+    - {fileID: 21300000, guid: 9073f237e447d784094dd0b148f9d7a2, type: 3}
+    - {fileID: 21300000, guid: 9f5098d6abac5af418a065018a7643a8, type: 3}
+    - {fileID: 21300000, guid: 50aaf250ade447141aceb6cf55a3cd3c, type: 3}
+    - {fileID: 21300000, guid: 7f5d38ba2ee81fd49bc79df85876f72f, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -136,7 +161,7 @@ MonoBehaviour:
       Data: Add +5 to pattern multiplicator.
     - Name: Icon
       Entry: 10
-      Data: 0
+      Data: 1
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -218,7 +243,7 @@ MonoBehaviour:
       Data: Adds +5000 MHz to any pattern.
     - Name: Icon
       Entry: 10
-      Data: 0
+      Data: 2
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -300,7 +325,7 @@ MonoBehaviour:
       Data: Add +10 to pattern multiplicator.
     - Name: Icon
       Entry: 10
-      Data: 0
+      Data: 3
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -382,7 +407,7 @@ MonoBehaviour:
       Data: Multiplies pattern score by x1,5.
     - Name: Icon
       Entry: 10
-      Data: 0
+      Data: 4
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -464,7 +489,7 @@ MonoBehaviour:
       Data: Multiplies pattern score by x3.
     - Name: Icon
       Entry: 10
-      Data: 0
+      Data: 5
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -546,7 +571,7 @@ MonoBehaviour:
       Data: Increases Buffer size by 2.
     - Name: Icon
       Entry: 10
-      Data: 1
+      Data: 6
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -628,7 +653,7 @@ MonoBehaviour:
       Data: Increases Retune charges by 1.
     - Name: Icon
       Entry: 10
-      Data: 0
+      Data: 7
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -710,7 +735,7 @@ MonoBehaviour:
       Data: Increases Transmissions by 1.
     - Name: Icon
       Entry: 10
-      Data: 0
+      Data: 8
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -792,7 +817,7 @@ MonoBehaviour:
       Data: Gain +3 Buffer, but lose 1 Transmissions.
     - Name: Icon
       Entry: 10
-      Data: 0
+      Data: 9
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -874,7 +899,7 @@ MonoBehaviour:
       Data: Gain +3 Buffer, but lose 1 Retunes.
     - Name: Icon
       Entry: 10
-      Data: 0
+      Data: 10
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -956,7 +981,7 @@ MonoBehaviour:
       Data: Gain +1 Retunes and +1 Transmissions.
     - Name: Icon
       Entry: 10
-      Data: 1
+      Data: 11
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -1038,7 +1063,7 @@ MonoBehaviour:
       Data: Sin type signals trigger 2 times
     - Name: Icon
       Entry: 10
-      Data: 0
+      Data: 12
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -1123,7 +1148,7 @@ MonoBehaviour:
       Data: Digital type signals trigger 2 times
     - Name: Icon
       Entry: 10
-      Data: 0
+      Data: 13
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -1208,7 +1233,7 @@ MonoBehaviour:
       Data: ' Saw type signals trigger 2 times'
     - Name: Icon
       Entry: 10
-      Data: 0
+      Data: 14
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -1294,7 +1319,7 @@ MonoBehaviour:
         400MHz '
     - Name: Icon
       Entry: 10
-      Data: 0
+      Data: 15
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -1389,7 +1414,7 @@ MonoBehaviour:
       Data: 'Signal at that frequencies trigger 2 times: 500MHz, 600,MHz 700MHz'
     - Name: Icon
       Entry: 10
-      Data: 1
+      Data: 16
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -1481,7 +1506,7 @@ MonoBehaviour:
       Data: 'Signal at that frequencies trigger 2 times: 800MHz, 900MHz'
     - Name: Icon
       Entry: 10
-      Data: 1
+      Data: 17
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -1570,7 +1595,7 @@ MonoBehaviour:
       Data: 'Signal at that frequencies trigger 2 times: 1000MHz, 1200MHz'
     - Name: Icon
       Entry: 10
-      Data: 1
+      Data: 18
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -1659,7 +1684,7 @@ MonoBehaviour:
       Data: 'Signal at that frequencies trigger 2 times: 1500MHz'
     - Name: Icon
       Entry: 10
-      Data: 1
+      Data: 19
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -1746,7 +1771,7 @@ MonoBehaviour:
       Data: 'Multiply by x2 those patterns power: DUPLEX, DUAL DUPLEX'
     - Name: Icon
       Entry: 10
-      Data: 1
+      Data: 20
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -1834,7 +1859,7 @@ MonoBehaviour:
       Data: 'Multiply by x2 those patterns power: TRI HARMONY'
     - Name: Icon
       Entry: 10
-      Data: 1
+      Data: 21
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -1919,7 +1944,7 @@ MonoBehaviour:
       Data: 'Multiply by x2 those patterns power: QUAD HARMONY'
     - Name: Icon
       Entry: 10
-      Data: 1
+      Data: 22
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -2004,7 +2029,7 @@ MonoBehaviour:
       Data: 'Multiply by x2 those patterns power: PURE HARMONY'
     - Name: Icon
       Entry: 10
-      Data: 1
+      Data: 23
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -2090,7 +2115,7 @@ MonoBehaviour:
         HARMONY  '
     - Name: Icon
       Entry: 10
-      Data: 0
+      Data: 24
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -2181,7 +2206,7 @@ MonoBehaviour:
       Data: 'Multiply by x2 those patterns power: TRIPLEX PAIR'
     - Name: Icon
       Entry: 10
-      Data: 1
+      Data: 25
     - Name: Rarity
       Entry: 4
       Data: 0
@@ -2267,7 +2292,7 @@ MonoBehaviour:
       Data: 'Multiply by x2 those patterns power: SWEEP, PURE SWEEP, ROYAL SWEEP'
     - Name: Icon
       Entry: 10
-      Data: 0
+      Data: 26
     - Name: Rarity
       Entry: 4
       Data: 0
