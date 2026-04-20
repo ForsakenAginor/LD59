@@ -4,10 +4,12 @@ using DG.Tweening;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 public class NewRoundIntroduce : MonoBehaviour
 {
+    [SerializeField] private Image _interferenceBorder;
     [SerializeField] private TMP_Text _interferenceText;
     [SerializeField] private SwitchableElement _interferenceAlert;
     [SerializeField] private BossManager _bossManager;
@@ -23,10 +25,14 @@ public class NewRoundIntroduce : MonoBehaviour
     private ILevelDifficultyConfiguration _configuration;
     private bool _isSetInterference = false;
     
+    private Tween _interferenceTween;
+    private Color _interferenceColor;
+    
     [Inject]
     public void Construct(ILevelDifficultyConfiguration configuration)
     {
         _configuration = configuration;
+        _interferenceColor = _interferenceBorder.color;
         _current = _configuration.GetValue(LevelNumber.First);
         _interferenceText.text = "";
         _scoreField.text = _current.ToString();
@@ -75,11 +81,26 @@ public class NewRoundIntroduce : MonoBehaviour
         {
             _interferenceAlert.Enable();
             _interferenceText.text = _bossManager.GetDescription();
+            
+            if (_interferenceTween != null)
+            {
+                _interferenceTween.Kill();
+            }
+            
+            _interferenceBorder.color = Color.white;
+            _interferenceTween = _interferenceBorder.DOColor(Color.red, 0.5f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
         }
         else
         {
             _interferenceAlert.Disable();
             _interferenceText.text = "";
+            _interferenceBorder.color = _interferenceColor;
+
+            if (_interferenceTween != null)
+            {
+                Debug.Log("");
+                _interferenceTween.Kill();
+            }
         }
 
         _isSetInterference = true;

@@ -44,7 +44,6 @@ namespace Assets.Source.Scripts.EntryPoint
             _healthVignette.Enable();
             _noiceVignette.Enable();
             _saveLoadServices.Add(_soundInitializer);
-            LoadData();
         }
 
         private void Awake()
@@ -68,6 +67,7 @@ namespace Assets.Source.Scripts.EntryPoint
             _gameManager.PlayerLose += OnPlayerLose;
             _sceneChanger.FadeOut();
             yield return null;
+            LoadData();
             Time.timeScale = 1f;
         }
 
