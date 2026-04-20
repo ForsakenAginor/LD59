@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Source.Scripts.DI.Services.Global;
+using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -12,6 +13,7 @@ public class HandVisual : MonoBehaviour
     private readonly Dictionary<Card, CardVisual> _cards = new Dictionary<Card, CardVisual>();
     private readonly List<CardVisual> _selectedCards = new List<CardVisual>();
 
+    [SerializeField] private TMP_Text _selectionText;
     [SerializeField] private BossManager _bossManager;
     [SerializeField] private CardVisual _cardVisualPrefab;
     [SerializeField] private Transform _cardsInHandContainer;
@@ -54,6 +56,7 @@ public class HandVisual : MonoBehaviour
         IEnumerable<Card> cards = _selectedCards.Select(card => card.Card);
         _cardTransferManager.MoveToTable(cards);
         _selectedCards.Clear();
+        _selectionText.text = "0/5";
         CallSelectedCardsChanged();
     }
 
@@ -62,6 +65,7 @@ public class HandVisual : MonoBehaviour
         IEnumerable<Card> cards = _selectedCards.Select(card => card.Card);
         _hand.RemoveCards(cards);
         _selectedCards.Clear();
+        _selectionText.text = "0/5";
         CallSelectedCardsChanged();
     }
 
@@ -101,12 +105,14 @@ public class HandVisual : MonoBehaviour
         {
             cardVisual.Normalize();
             _selectedCards.Remove(cardVisual);
+            _selectionText.text = $"{_selectedCards.Count}/5";
             CallSelectedCardsChanged();
         }
         else if (_selectedCards.Count < TableSize)
         {
             cardVisual.Enlarge();
             _selectedCards.Add(cardVisual);
+            _selectionText.text = $"{_selectedCards.Count}/5";
             CallSelectedCardsChanged();
         }
     }

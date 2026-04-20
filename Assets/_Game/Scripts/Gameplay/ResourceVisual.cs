@@ -23,8 +23,8 @@ public class ResourceVisual : MonoBehaviour
 
     private void OnGameActionDone()
     {
-        _rerolls.text = _gameManager.RerollsLeft.ToString();
-        _signals.text = _gameManager.SignalsLeft.ToString();
+        _rerolls.text = $"{_gameManager.RerollsLeft}/{_gameManager.RerollsMax}";
+        _signals.text = $"{_gameManager.SignalsLeft}/{_gameManager.SignalsMax}";
     }
 
 }

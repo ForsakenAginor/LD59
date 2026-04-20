@@ -41,6 +41,10 @@ public class GameManager : MonoBehaviour
     public int RerollsLeft => _rerollsLeft;
 
     public int SignalsLeft => _signalsLeft;
+    
+    public int RerollsMax => _rerollsMax + _jokerManager.GetRerollsModificator();
+    
+    public int SignalsMax => _signalsMax + _jokerManager.GetSignalsModificator();
 
 
     [Inject]
