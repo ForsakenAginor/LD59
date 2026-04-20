@@ -105,7 +105,7 @@ namespace Assets.Source.Scripts.AudioLogic
         
         public void PlayCardHighlight()
         {
-            PlaySound(_cardHighlight, 0.2f, true);
+            PlaySound(_cardHighlight, 0.5f, true);
         }
 
         public void PlayJokerSelectionAppear()
