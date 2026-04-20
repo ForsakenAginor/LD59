@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class GameStartAnimation : MonoBehaviour
 {
+    [SerializeField] private SwitchableElement _tutorial;
     [SerializeField] private Image _startButtonImage;
     [SerializeField] private Color _targetColor;
     [SerializeField] private Button _startButton;
@@ -51,11 +52,15 @@ public class GameStartAnimation : MonoBehaviour
         StopCoroutine(_coroutine);
         _tooltip.Disable();
         _startButtonImage.color = _originalColor;
-        _canvasGroup.DOFade(0f, 2f).SetEase(Ease.Linear);
-
-        foreach (Button button in _otherButtons)
+        _canvasGroup.DOFade(0f, 2f).SetEase(Ease.Linear).OnComplete(() =>
         {
-            button.interactable = true;
-        }
+            _tutorial.Enable();
+
+            foreach (Button button in _otherButtons)
+            {
+                button.interactable = true;
+            }
+        });
+
     }
 }
