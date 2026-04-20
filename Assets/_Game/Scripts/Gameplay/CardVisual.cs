@@ -117,7 +117,7 @@ public class CardVisual : MonoBehaviour, IPointerClickHandler
             _rotatingTween.Kill();
         }
         
-        _movingTween = _rectTransform.DOAnchorPos(targetPosition, _movingDuration).SetDelay(delay);
+        _movingTween = _rectTransform.DOAnchorPos(targetPosition, _movingDuration).SetDelay(delay).OnStart(()=> AudioPlayer.Instance.PlayCardFlying());
         _rotatingTween = _rectTransform.DORotateQuaternion(targetRotation, _movingDuration).SetDelay(delay);
     }
 }

@@ -25,7 +25,7 @@ public class JokerManager : MonoBehaviour
         "BoostSaw",
         "BoostDigital",
     };
-    
+
     private readonly List<JokerCard> _jokers = new();
     private List<string> _jokersNames = new List<string>();
 
@@ -41,7 +41,7 @@ public class JokerManager : MonoBehaviour
     [SerializeField] private float _animationDuration = 0.3f;
     [SerializeField] private SwitchableElement _jokerSelectionPanel;
 
-    private LevelNumber  _level = LevelNumber.First;
+    private LevelNumber _level = LevelNumber.First;
     private IJokerConfiguration _configuration;
     private IZenjectInstantiateWrapper _instantiateWrapper;
     private bool _isJokerSelected;
@@ -114,6 +114,7 @@ public class JokerManager : MonoBehaviour
 
         for (int i = 0; i < _jokerSelectionCards.Length; i++)
         {
+            AudioPlayer.Instance.PlayJokerSelectionAppear();
             yield return _jokerSelectionCards[i].transform.DOScale(Vector3.one, _animationDuration)
                 .WaitForCompletion();
         }
@@ -136,12 +137,18 @@ public class JokerManager : MonoBehaviour
         for (int i = 0; i < _jokerSelectionCards.Length; i++)
         {
             if (_jokerSelectionCards[i].IsSelected == false)
+            {
+                AudioPlayer.Instance.PlayJokerSelectionAppear();
                 _jokerSelectionCards[i].transform.DOScale(Vector3.zero, _animationDuration);
+            }
             else
+            {
                 selected = _jokerSelectionCards[i].transform;
+            }
         }
 
         yield return selected.DOScale(Vector3.zero, _animationDuration).SetDelay(_animationDuration)
+                .OnStart(() => AudioPlayer.Instance.PlayJokerSelectionAppear())
             .WaitForCompletion();
 
         _jokerSelectionPanel.Disable();

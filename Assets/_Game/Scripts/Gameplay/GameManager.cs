@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using Assets.Source.Scripts.AudioLogic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -131,6 +132,7 @@ public class GameManager : MonoBehaviour
             if (_level == LevelNumber.Twelveth)
             {
                 PlayerWon?.Invoke();
+                AudioPlayer.Instance.PlayWinGame();
             }
             else
             {
@@ -138,6 +140,7 @@ public class GameManager : MonoBehaviour
                 _bossManager.SetLevel(_level);
                 _cardTransferManager.Hand.ClearHand();
                 _cardTransferManager.Deck.Fill();
+                AudioPlayer.Instance.PlayWinRound();
                 yield return _jokerManager.SelectJokers(_level);
                 yield return _newRoundIntroduce.SetNewThreshold(_level);
                 Init(_level);
@@ -155,6 +158,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                AudioPlayer.Instance.PlayLoseRound();
                 PlayerLose?.Invoke();
             }
         }

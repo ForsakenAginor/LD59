@@ -22,6 +22,17 @@ namespace Assets.Source.Scripts.AudioLogic
         [SerializeField] private AudioClip _digital;
         [SerializeField] private AudioClip _joker;
         [SerializeField] private AudioClip _cardSelection;
+        
+        [SerializeField] private AudioClip _cardHighlight;
+        [SerializeField] private AudioClip _jokerSelectionAppear;
+        [SerializeField] private AudioClip _winRound;
+        [SerializeField] private AudioClip _loseRound;
+        [SerializeField] private AudioClip _winGame;
+        [SerializeField] private AudioClip _interferenceAlert;
+        [SerializeField] private AudioClip _newRoundPrepare;
+        [SerializeField] private AudioClip _monitorEnable;
+        [SerializeField] private AudioClip _cardFlying;
+        [SerializeField] private AudioClip _patternSound;
 
         public static AudioPlayer Instance
         {
@@ -69,27 +80,77 @@ namespace Assets.Source.Scripts.AudioLogic
 
         public void PlaySaw()
         {
-            PlaySound(_saw, 0.5f, true);
+            PlaySound(_saw, 0.8f, true);
         }
 
         public void PlaySin()
         {
-            PlaySound(_sin, 0.5f, true);
+            PlaySound(_sin, 0.8f, true);
         }
 
         public void PlayDigital()
         {
-            PlaySound(_digital, 0.5f, true);
+            PlaySound(_digital, 0.8f, true);
         }
 
         public void PlayJoker()
         {
-            PlaySound(_joker, 0.5f, true);
+            PlaySound(_joker, 0.8f, true);
         }
 
         public void PlayCardSelection()
         {
             PlaySound(_cardSelection, 0.5f, true);
+        }
+        
+        public void PlayCardHighlight()
+        {
+            PlaySound(_cardHighlight, 0.2f, true);
+        }
+
+        public void PlayJokerSelectionAppear()
+        {
+            PlaySound(_jokerSelectionAppear, 0.7f, true);
+        }
+
+        public void PlayWinRound()
+        {
+            PlaySound(_winRound);
+        }
+
+        public void PlayLoseRound()
+        {
+            PlaySound(_loseRound);
+        }
+
+        public void PlayWinGame()
+        {
+            PlaySound(_winGame);
+        }
+
+        public void PlayInterferenceAlert()
+        {
+            PlaySound(_interferenceAlert);
+        }
+
+        public void PlayNewRoundPrepare()
+        {
+            PlaySound(_newRoundPrepare);
+        }
+
+        public void PlayMonitorEnable()
+        {
+            PlaySound(_monitorEnable);
+        }
+
+        public void PlayCardFlying()
+        {
+            PlaySound(_cardFlying, 0.2f, true);
+        }
+
+        public void PlayPatternSound()
+        {
+            PlaySound(_patternSound);
         }
         
         private void PlaySound(AudioClip clip, float volumeMultiplier = 1f, bool isRandomPitch = false)

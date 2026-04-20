@@ -1,4 +1,5 @@
 using System.Collections;
+using Assets.Source.Scripts.AudioLogic;
 using Assets.Source.Scripts.Utility;
 using DG.Tweening;
 using TMPro;
@@ -15,7 +16,7 @@ public class NewRoundIntroduce : MonoBehaviour
     [SerializeField] private BossManager _bossManager;
     [SerializeField] private SwitchableElement _panel;
     [SerializeField] private CanvasGroup _canvasGroup;
-    
+
     [SerializeField] private float _duration = 2f;
     [SerializeField] private TMP_Text _scoreField;
     [SerializeField] private float _minTextSize = 35;
@@ -24,10 +25,10 @@ public class NewRoundIntroduce : MonoBehaviour
     private int _current;
     private ILevelDifficultyConfiguration _configuration;
     private bool _isSetInterference = false;
-    
+
     private Tween _interferenceTween;
     private Color _interferenceColor;
-    
+
     [Inject]
     public void Construct(ILevelDifficultyConfiguration configuration)
     {
@@ -38,15 +39,16 @@ public class NewRoundIntroduce : MonoBehaviour
         _scoreField.text = _current.ToString();
         _scoreField.fontSize = _minTextSize;
     }
-    
+
     public IEnumerator SetNewThreshold(LevelNumber levelNumber)
     {
         _isSetInterference = false;
         _canvasGroup.alpha = 0f;
         _panel.Enable();
-        yield return _canvasGroup.DOFade(1, _duration/3f).SetEase(Ease.Linear).WaitForCompletion();
+        yield return _canvasGroup.DOFade(1, _duration / 3f).SetEase(Ease.Linear).WaitForCompletion();
         int newThreshold = _configuration.GetValue(levelNumber);
         float remainingDuration = _duration;
+        AudioPlayer.Instance.PlayNewRoundPrepare();
 
         while (_current < newThreshold)
         {
@@ -59,17 +61,18 @@ public class NewRoundIntroduce : MonoBehaviour
 
             if (_isSetInterference == false && _current > newThreshold * 0.7f)
                 SetInterference();
-            
+
             _scoreField.text = _current.ToString();
-            float fontSize = Mathf.Clamp(math.remap(0, _maxScore, _minTextSize, _maxTextSize, _current), _minTextSize, _maxTextSize);
+            float fontSize = Mathf.Clamp(math.remap(0, _maxScore, _minTextSize, _maxTextSize, _current), _minTextSize,
+                _maxTextSize);
             _scoreField.fontSize = fontSize;
 
             yield return null;
         }
 
         SetInterference();
-        
-        
+
+
         yield return new WaitForSeconds(1f);
         _panel.Disable();
         _interferenceAlert.Disable();
@@ -79,16 +82,18 @@ public class NewRoundIntroduce : MonoBehaviour
     {
         if (_bossManager.IsBossActive)
         {
+            AudioPlayer.Instance.PlayInterferenceAlert();
             _interferenceAlert.Enable();
             _interferenceText.text = _bossManager.GetDescription();
-            
+
             if (_interferenceTween != null)
             {
                 _interferenceTween.Kill();
             }
-            
+
             _interferenceBorder.color = Color.white;
-            _interferenceTween = _interferenceBorder.DOColor(Color.red, 0.5f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+            _interferenceTween = _interferenceBorder.DOColor(Color.red, 0.5f).SetEase(Ease.Linear)
+                .SetLoops(-1, LoopType.Yoyo);
         }
         else
         {
@@ -98,7 +103,6 @@ public class NewRoundIntroduce : MonoBehaviour
 
             if (_interferenceTween != null)
             {
-                Debug.Log("");
                 _interferenceTween.Kill();
             }
         }

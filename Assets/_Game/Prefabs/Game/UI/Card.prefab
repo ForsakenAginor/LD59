@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 639794679086074832}
   - component: {fileID: 3833929185174254919}
   - component: {fileID: 7511852868810306174}
+  - component: {fileID: 7575071531449095824}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -182,6 +183,18 @@ MonoBehaviour:
   _image: {fileID: 4323335881402600943}
   _movingDuration: 0.2
   _blockingImage: {fileID: 2328421026702827383}
+--- !u!114 &7575071531449095824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708248771100655308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b52afa64ef42854cbe63a9357013eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HighlightCatcher
 --- !u!1 &5415377286436741503
 GameObject:
   m_ObjectHideFlags: 0

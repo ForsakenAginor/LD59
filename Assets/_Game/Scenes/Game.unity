@@ -2396,7 +2396,6 @@ GameObject:
   - component: {fileID: 289091644}
   - component: {fileID: 289091643}
   - component: {fileID: 289091642}
-  - component: {fileID: 289091645}
   m_Layer: 5
   m_Name: POWER
   m_TagString: Untagged
@@ -2505,18 +2504,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 289091640}
   m_CullTransparentMesh: 1
---- !u!114 &289091645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 289091640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e049249be7896a745b1c7e2ad45db84b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Assets.Source.Scripts.UI.ButtonClickSoundHandler
 --- !u!1 &290902506
 GameObject:
   m_ObjectHideFlags: 0
@@ -3947,6 +3934,7 @@ GameObject:
   - component: {fileID: 424634619}
   - component: {fileID: 424634620}
   - component: {fileID: 424634621}
+  - component: {fileID: 424634622}
   m_Layer: 0
   m_Name: SoundLogic
   m_TagString: Untagged
@@ -4023,6 +4011,29 @@ MonoBehaviour:
   _digital: {fileID: 8300000, guid: 00642a936c7c37d468af8f3a1aa831d5, type: 3}
   _joker: {fileID: 8300000, guid: 85bacda64d760f643bed9d632b1c0639, type: 3}
   _cardSelection: {fileID: 8300000, guid: 126a2c72d497ea542908c995d35ff957, type: 3}
+  _cardHighlight: {fileID: 8300000, guid: a1291edde38a72445b4ca3bc5f4a04b9, type: 3}
+  _jokerSelectionAppear: {fileID: 8300000, guid: a1291edde38a72445b4ca3bc5f4a04b9, type: 3}
+  _winRound: {fileID: 8300000, guid: a1291edde38a72445b4ca3bc5f4a04b9, type: 3}
+  _loseRound: {fileID: 8300000, guid: a1291edde38a72445b4ca3bc5f4a04b9, type: 3}
+  _winGame: {fileID: 8300000, guid: a1291edde38a72445b4ca3bc5f4a04b9, type: 3}
+  _interferenceAlert: {fileID: 8300000, guid: a1291edde38a72445b4ca3bc5f4a04b9, type: 3}
+  _newRoundPrepare: {fileID: 8300000, guid: a1291edde38a72445b4ca3bc5f4a04b9, type: 3}
+  _monitorEnable: {fileID: 8300000, guid: a1291edde38a72445b4ca3bc5f4a04b9, type: 3}
+  _cardFlying: {fileID: 8300000, guid: a1291edde38a72445b4ca3bc5f4a04b9, type: 3}
+  _patternSound: {fileID: 8300000, guid: a1291edde38a72445b4ca3bc5f4a04b9, type: 3}
+--- !u!114 &424634622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424634618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ac0b01a3264e90b5bde5f7f509cdd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonitorSoundPlayer
+  _button: {fileID: 289091642}
 --- !u!1 &449686863
 GameObject:
   m_ObjectHideFlags: 0

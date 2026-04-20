@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 2765480733484278360}
   - component: {fileID: 2416250589278335991}
   - component: {fileID: 102783908748099893}
+  - component: {fileID: 4989093463280589001}
   m_Layer: 0
   m_Name: SelectionCard
   m_TagString: Untagged
@@ -353,6 +354,18 @@ MonoBehaviour:
   _name: {fileID: 8390395147951023869}
   _description: {fileID: 421709756466190436}
   _icon: {fileID: 8549344437385376086}
+--- !u!114 &4989093463280589001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6918867534871949078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b52afa64ef42854cbe63a9357013eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HighlightCatcher
 --- !u!1 &7369693820921918729
 GameObject:
   m_ObjectHideFlags: 0

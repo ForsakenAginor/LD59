@@ -72,6 +72,7 @@ public class TableAnimation : MonoBehaviour
 
         float multiplier = _configuration.GetValue(_hand.Combination.Type).Multiplier;
         _preview.AddTargetValues(0, multiplier);
+        AudioPlayer.Instance.PlayPatternSound();
         yield return _flyingCombination.Show(_hand.Combination.Type);
 
         if (_jokerManager.CanBoostThatCombination(_hand.Combination.Type, out List<JokerCard> jokers))
