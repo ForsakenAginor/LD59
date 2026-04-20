@@ -38,7 +38,7 @@ public class NewRoundIntroduce : MonoBehaviour
         _isSetInterference = false;
         _canvasGroup.alpha = 0f;
         _panel.Enable();
-        yield return _canvasGroup.DOFade(1, _duration/2f).WaitForCompletion();
+        yield return _canvasGroup.DOFade(1, _duration/3f).SetEase(Ease.Linear).WaitForCompletion();
         int newThreshold = _configuration.GetValue(levelNumber);
         float remainingDuration = _duration;
 

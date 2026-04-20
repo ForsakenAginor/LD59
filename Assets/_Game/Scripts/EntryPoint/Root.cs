@@ -18,9 +18,11 @@ namespace Assets.Source.Scripts.EntryPoint
         [SerializeField] private GameManager _gameManager;
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _closeMenuButton;
-        [SerializeField] private Button _restartButton;
+        [SerializeField] private Button[] _restartButtons;
         [SerializeField] private Button _settingsButton;
         [SerializeField] private SwitchableElement _settings;
+        [SerializeField] private SwitchableElement _winScreen;
+        [SerializeField] private SwitchableElement _loseScreen;
         
         [Header("Other")]
         [SerializeField] private AudioSaveLoadService _soundInitializer;
@@ -31,7 +33,8 @@ namespace Assets.Source.Scripts.EntryPoint
         private NoiceVignetteEffect _noiceVignette;
 
         [Inject]
-        public void Construct(ISceneChanger sceneChanger, SaveDataProvider saveDataProvider, HealthVignetteEffect healthVignette, NoiceVignetteEffect noiceVignette)
+        public void Construct(ISceneChanger sceneChanger, SaveDataProvider saveDataProvider,
+            HealthVignetteEffect healthVignette, NoiceVignetteEffect noiceVignette)
         {
             _sceneChanger = sceneChanger;
             _saveDataProvider = saveDataProvider;
@@ -48,9 +51,14 @@ namespace Assets.Source.Scripts.EntryPoint
         {
             _playButton.onClick.AddListener(StartPlay);
             _closeMenuButton.onClick.AddListener(SaveData);
-            _restartButton.onClick.AddListener(Restart);
+
+            foreach (Button restartButton in _restartButtons)
+            {
+                restartButton.onClick.AddListener(Restart);
+            }
+
             _settingsButton.onClick.AddListener(OpenSettings);
-            
+
             Time.timeScale = 0f;
         }
 
@@ -67,9 +75,13 @@ namespace Assets.Source.Scripts.EntryPoint
         {
             _playButton.onClick.RemoveListener(StartPlay);
             _closeMenuButton.onClick.RemoveListener(SaveData);
-            _restartButton.onClick.RemoveListener(Restart);
             _settingsButton.onClick.RemoveListener(OpenSettings);
-            
+
+            foreach (Button restartButton in _restartButtons)
+            {
+                restartButton.onClick.RemoveListener(Restart);
+            }
+
             _healthVignette.Disable();
             _noiceVignette.Disable();
             _gameManager.PlayerWon -= OnPlayerWon;
@@ -83,7 +95,11 @@ namespace Assets.Source.Scripts.EntryPoint
 
         private void Restart()
         {
-            _restartButton.interactable = false;
+            foreach (Button restartButton in _restartButtons)
+            {
+                restartButton.interactable = false;
+            }
+
             _sceneChanger.LoadScene(Scenes.Game.ToString());
         }
 
@@ -94,12 +110,12 @@ namespace Assets.Source.Scripts.EntryPoint
 
         private void OnPlayerLose()
         {
-            Debug.Log("Player lose");
+            _loseScreen.Enable();
         }
 
         private void OnPlayerWon()
         {
-            Debug.Log("Player Won");
+            _winScreen.Enable();
         }
 
         private void SaveData()
