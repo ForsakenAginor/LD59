@@ -21,7 +21,7 @@ namespace Assets.Source.Scripts.UI
         private void Awake()
         {
             _button = GetComponent<Button>();
-            _button.onClick.AddListener(OnButtonClick);            
+            _button.onClick.AddListener(OnButtonClick);
         }
 
         private void OnDestroy()
@@ -36,7 +36,8 @@ namespace Assets.Source.Scripts.UI
 
         public void OnPointerEnter(PointerEventData _)
         {
-            _audioPlayer?.PlayButtonHighlight();
+            if (_button.interactable)
+                _audioPlayer?.PlayButtonHighlight();
         }
     }
 }
